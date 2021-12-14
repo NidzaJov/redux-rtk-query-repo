@@ -2,10 +2,11 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 export const apiSlice = createApi({
     baseQuery: fetchBaseQuery({ baseUrl:'https://jsonplaceholder.typicode.com'}),
-
+    tagTypes: ['User'],
     endpoints: builder => ({
         getUsers: builder.query({
-            query: () => '/users'
+            query: () => '/users',
+            providedTags: ['User']
         }),
 
         getUser: builder.query({
@@ -17,7 +18,8 @@ export const apiSlice = createApi({
                 url: '/users',
                 method: 'POST',
                 body: initialUser
-            })
+            }),
+            invalidatesTags: ['User']
         })
     })
 })
