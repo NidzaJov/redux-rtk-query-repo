@@ -6,8 +6,24 @@ export const apiSlice = createApi({
     endpoints: builder => ({
         getUsers: builder.query({
             query: () => '/users'
+        }),
+
+        getUser: builder.query({
+            query: (userId) => `/users/${userId}`
+        }),
+
+        addNewUser: builder.mutation({
+            query: initialUser => ({
+                url: '/users',
+                method: 'POST',
+                body: initialUser
+            })
         })
     })
 })
 
-export const { useGetUsersQuery } = apiSlice
+export const { 
+    useGetUsersQuery, 
+    useGetUserQuery,
+    useAddNewUserMutation
+} = apiSlice

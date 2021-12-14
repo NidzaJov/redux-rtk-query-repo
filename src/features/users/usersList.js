@@ -1,14 +1,27 @@
 import { useMemo } from 'react';
+import { Link } from 'react-router-dom';
 import { useGetUsersQuery } from '../api/apiSlice';
+import { AddNewUserForm } from './AddNewUserForm';
+import classnames from 'classnames';
 
+let UserArticle = ({ user }) => {
+    return(
+        <article className='user-article'> 
+            <span>{user.name}</span>
+            <Link to={`/users/${user.id}`}>View user</Link>
+        </article>
+    )
+}
 
 export const UsersList = () => {
     const {
         data: users = [],
         isLoading,
+        isFetching,
         isSuccess,
         isError,
-        error
+        error,
+        refetch
     } = useGetUsersQuery();
 
     const sortedUsers = useMemo(() => {
@@ -23,16 +36,23 @@ export const UsersList = () => {
     if (isLoading) {
         content = <span>Loading...</span>
     } else if (isSuccess) {
-        content = sortedUsers.map(user => <div key={user.id}>{user.name}</div>)
+        const renderedUsers = sortedUsers.map(user => <UserArticle key={user.id} user={user} ></UserArticle>)
+        const containerClassname = classnames('users-container', {disabled: isFetching})
+        content = <div className={containerClassname}>{renderedUsers}</div>
     } else if (isError) {
         content = <div>{error.toString()}</div>
     }
 
 
     return (
-        <section className="users-list">
-            <h2>Users</h2>
-            {content}
-        </section>
+        <div>
+            <section className="users-list">
+                <h2>Users</h2>
+                <button onClick={refetch}>Refresh users</button>
+                {content}
+            </section>
+            <AddNewUserForm />
+        </div>
+        
     )
 }

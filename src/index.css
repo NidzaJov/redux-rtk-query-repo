@@ -16,4 +16,72 @@ p {
   font-size: 1.1rem;
 }
 
+section {
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 1.5rem;
+}
 
+.users-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 50%;
+  margin: auto;
+}
+
+.user-article {
+  width: 100%;
+}
+
+.user-article span {
+  float: left;
+}
+
+.user-article a {
+  float: right;
+}
+
+.users-container.disabled {
+  opacity: 0.5;
+}
+
+.users-article {
+  padding: 0.25rem 0.25rem;
+  border: 1px solid rgb(177, 174, 174);
+  border-radius: 7px;
+}
+
+.button {
+  display: inline-block;
+  background: #1976d2;
+  color: white;
+  border-radius: 4px;
+  font-weight: 700;
+  padding: 0.75rem 1.5rem;
+}
+
+button:disabled,
+button:disabled:hover {
+  opacity: 0.5;
+}
+
+.add-user-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.add-user-form label {
+  width: 60%;
+  text-align: left;
+  margin-bottom: 5px;
+}
+
+.add-user-form label > * {
+  float: right;
+  width: 40%;
+}
