@@ -6,8 +6,17 @@ const todosAdapter = createEntityAdapter();
 
 const initialState = todosAdapter.getInitialState();
 */
+export const extendedApiSlice = apiSlice.injectEndpoints({
+    endpoints: (builder) => ({
+        getTodos: builder.query({
+            query: () => '/todos',
+        })
+    })
+})
 
-export const selectTodosResult = apiSlice.endpoints.getTodos.select();
+export const { useGetTodosQuery } = extendedApiSlice
+
+export const selectTodosResult = extendedApiSlice.endpoints.getTodos.select();
 
 const emptyTodos = [];
 

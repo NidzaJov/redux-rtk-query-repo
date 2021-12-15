@@ -17,10 +17,6 @@ export const apiSlice = createApi({
             providedTags: (result, error, arg) => [{ type: 'User', id: arg}]
         }),
 
-        getTodos: builder.query({
-            query: () => '/todos'
-        }),
-
         addNewUser: builder.mutation({
             query: initialUser => ({
                 url: '/users',
@@ -44,7 +40,6 @@ export const apiSlice = createApi({
 export const { 
     useGetUsersQuery, 
     useGetUserQuery,
-    useGetTodosQuery,
     useAddNewUserMutation,
     useEditUserMutation
 } = apiSlice
