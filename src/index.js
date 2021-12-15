@@ -5,6 +5,9 @@ import App from './App';
 import store from './app/store';
 import { Provider } from 'react-redux';
 import * as serviceWorker from './serviceWorker';
+import { apiSlice } from './features/api/apiSlice';
+
+store.dispatch(apiSlice.endpoints.getTodos.initiate())
 
 ReactDOM.render(
   <React.StrictMode>

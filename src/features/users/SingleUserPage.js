@@ -26,6 +26,7 @@ export const SingleUserPage = () => {
                         <span>{user.company.name}</span>
                     </p>
                 </div>
+                <Link to={`/editUser/${user.id}`} className="button">Edit user</Link>
             </article>
         )
     }

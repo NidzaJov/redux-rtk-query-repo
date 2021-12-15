@@ -6,11 +6,19 @@ export const apiSlice = createApi({
     endpoints: builder => ({
         getUsers: builder.query({
             query: () => '/users',
-            providedTags: ['User']
+            providedTags: (result = [], error, arg) => [
+                'User',
+                ...result.map(({ id }) => ({ type: 'User', id}))
+            ]
         }),
 
         getUser: builder.query({
-            query: (userId) => `/users/${userId}`
+            query: (userId) => `/users/${userId}`,
+            providedTags: (result, error, arg) => [{ type: 'User', id: arg}]
+        }),
+
+        getTodos: builder.query({
+            query: () => '/todos'
         }),
 
         addNewUser: builder.mutation({
@@ -20,6 +28,15 @@ export const apiSlice = createApi({
                 body: initialUser
             }),
             invalidatesTags: ['User']
+        }),
+
+        editUser: builder.mutation({
+            query: user => ({
+                url: `/users/${user.id}`,
+                method: 'PATCH',
+                body: user
+            }),
+            invalidatesTags: (result, error, arg) => [{type: 'User', id: arg.id}]
         })
     })
 })
@@ -27,5 +44,7 @@ export const apiSlice = createApi({
 export const { 
     useGetUsersQuery, 
     useGetUserQuery,
-    useAddNewUserMutation
+    useGetTodosQuery,
+    useAddNewUserMutation,
+    useEditUserMutation
 } = apiSlice

@@ -10,17 +10,23 @@ import './App.css';
 
 import { UsersList } from './features/users/UsersList';
 import { SingleUserPage } from './features/users/SingleUserPage'
+import { EditUserForm } from './features/users/EditUserForm';
+import { TodosList } from './features/todos/TodosList';
 
 function App() {
   return (
     <Router>
       <div className="App">
         <Routes>
+        <Route exact path="/editUser/:userId" element={<EditUserForm />}>
+          </Route>
           <Route exact path='/users' element={<UsersList />}>
           </Route>
           <Route exact path="/users/:userId" element={<SingleUserPage />}>
           </Route>
+          <Route exact path="/todos" element={<TodosList />} />
           <Route exact path="/" element={<Navigate to="/users"/>}>
+            
           </Route>
         </Routes>
       </div>
