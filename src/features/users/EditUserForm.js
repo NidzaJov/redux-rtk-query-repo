@@ -1,13 +1,16 @@
 import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
-import { useGetUserQuery, useEditUserMutation } from '../api/apiSlice';
+import { useEditUserMutation } from '../api/apiSlice';
+import { useGetUserQuery, selectUserById, extUsersApiSlice } from '../users/usersSlice'
 
 export const EditUserForm = () => {
     const { userId } = useParams();
+    console.log(userId);
     const navigate = useNavigate();
-
+    //extUsersApiSlice.endpoints.getUser.initiate(userId);
     const { data: user = {} } = useGetUserQuery(userId);
+    //const user = selectUserById(userId);
     const [ updateUser, { isLoading }] = useEditUserMutation();
     console.log(user);
     const [ name, setName ] = useState(user.name);
@@ -50,7 +53,7 @@ export const EditUserForm = () => {
 
     return (
         <section>
-            <h3>Add new user:</h3>
+            <h3>Edit user:</h3>
             <form className="add-user-form">
                 <label htmlFor="name">
                     Name: <input type="text" value={name} onChange={(e) => setName(e.target.value)}/>
@@ -95,7 +98,6 @@ export const EditUserForm = () => {
                     <button type="button" onClick={onSaveUserClicked} disabled={isLoading}>Save user</button>
                 </div>
             </form>
-            
         </section>
     )
 }

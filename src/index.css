@@ -32,15 +32,15 @@ section {
   margin: auto;
 }
 
-.user-article {
+.userslist-article {
   width: 100%;
 }
 
-.user-article span {
+.userslist-article span {
   float: left;
 }
 
-.user-article a {
+.userslist-article a {
   float: right;
 }
 
@@ -84,4 +84,50 @@ button:disabled:hover {
 .add-user-form label > * {
   float: right;
   width: 40%;
+}
+
+.user-article {
+  display: flex;
+  flex-direction: column;
+  background-color: #aed143;
+  border-radius: 5px;
+  padding: 0.75rem 1rem;
+}
+
+.user-data-div {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-data-div {
+  text-align: left;
+}
+
+.user-article > div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.user-data-div + div {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.user-page-section > ul {
+  display: flex;
+  flex-direction: column;
+  align-items:flex-start;
+}
+
+.todo-li {
+  width: 50%;
+  text-align: left;
+  border: 1px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  background-color: #fbd249;
+  padding: 0.75rem 1rem;
 }

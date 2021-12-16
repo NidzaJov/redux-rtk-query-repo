@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux';
 
 let UserArticle = ({ user }) => {
     return(
-        <article className='user-article'> 
+        <article className='userslist-article'> 
             <span>{user.name}</span>
             <Link to={`/users/${user.id}`}>View user</Link>
         </article>

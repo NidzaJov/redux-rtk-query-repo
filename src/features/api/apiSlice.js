@@ -10,11 +10,6 @@ export const apiSlice = createApi({
     endpoints: builder => ({
         
 
-        getUser: builder.query({
-            query: (userId) => `/users/${userId}`,
-            providedTags: (result, error, arg) => [{ type: 'User', id: arg}]
-        }),
-
         getPosts: builder.query({
             query: () => '/posts',
             transformResponse: responseData => {
@@ -44,7 +39,6 @@ export const apiSlice = createApi({
 })
 
 export const { 
-    useGetUserQuery,
     useAddNewUserMutation,
     useGetPostsQuery,
     useEditUserMutation

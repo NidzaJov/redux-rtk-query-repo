@@ -18,10 +18,22 @@ export const extUsersApiSlice = apiSlice.injectEndpoints({
                 ...result.map(({ id }) => ({ type: 'User', id}))
             ]
         }),
+        getUser: builder.query({
+            query: (userId) => `/users/${userId}`,
+            transformResponse: responseData => {
+                return usersAdapter.setOne(initialState, responseData)
+            },
+            providedTags: (result, error, arg) => [{ type: 'User', id: arg}]
+        }),
     })
+
+    
 })
 
-export const { useGetUsersQuery } = extUsersApiSlice;
+export const { 
+    useGetUsersQuery,
+    useGetUserQuery,
+} = extUsersApiSlice;
 
 export const selectUsersResult = extUsersApiSlice.endpoints.getUsers.select();
 
