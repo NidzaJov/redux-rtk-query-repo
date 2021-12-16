@@ -1,4 +1,5 @@
-import { useAddNewUserMutation, useGetUsersQuery } from "../api/apiSlice";
+import { useGetUsersQuery } from "./usersSlice";
+import { useAddNewUserMutation } from "../api/apiSlice";
 import { useState } from "react";
 
 

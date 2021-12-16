@@ -1,20 +1,25 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { createEntityAdapter } from '@reduxjs/toolkit';
+
+const postsAdadpter = createEntityAdapter();
+const initialState = postsAdadpter.getInitialState();
 
 export const apiSlice = createApi({
     baseQuery: fetchBaseQuery({ baseUrl:'https://jsonplaceholder.typicode.com'}),
     tagTypes: ['User'],
     endpoints: builder => ({
-        getUsers: builder.query({
-            query: () => '/users',
-            providedTags: (result = [], error, arg) => [
-                'User',
-                ...result.map(({ id }) => ({ type: 'User', id}))
-            ]
-        }),
+        
 
         getUser: builder.query({
             query: (userId) => `/users/${userId}`,
             providedTags: (result, error, arg) => [{ type: 'User', id: arg}]
+        }),
+
+        getPosts: builder.query({
+            query: () => '/posts',
+            transformResponse: responseData => {
+                return postsAdadpter.setAll(initialState, responseData)
+            }
         }),
 
         addNewUser: builder.mutation({
@@ -34,12 +39,13 @@ export const apiSlice = createApi({
             }),
             invalidatesTags: (result, error, arg) => [{type: 'User', id: arg.id}]
         })
+
     })
 })
 
 export const { 
-    useGetUsersQuery, 
     useGetUserQuery,
     useAddNewUserMutation,
+    useGetPostsQuery,
     useEditUserMutation
 } = apiSlice

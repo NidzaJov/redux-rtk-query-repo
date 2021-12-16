@@ -1,16 +1,48 @@
-import { Link, useParams } from 'react-router-dom';
-import { useGetUserQuery } from '../api/apiSlice';
+import React, { useMemo } from 'react'
+import { useSelector } from 'react-redux'
+import { Link, useParams } from 'react-router-dom'
+import { createSelector } from '@reduxjs/toolkit'
+
+
+import { selectUserById } from './usersSlice';
+import { useGetPostsQuery } from '../api/apiSlice';
+
+
 
 export const SingleUserPage = () => {
-    const { userId } = useParams()
+    const { userId } = useParams();
+    const user = useSelector(state => selectUserById(state, userId))
+    
+    const selectPostsForUser = useMemo(() => {
+        return createSelector(
+            state => state,
+            (state, userId) => userId,
+            (state, userId) => {
+                if (state.isSuccess) {
+                    const result = Object.keys(state.data.entities).reduce((acc, key, i) => {
+                        if (state.data.entities[key].userId == userId) {
+                            acc.posts.push(state.data.entities[key])
+                        } 
+                        return acc;
+                    }, {posts: []});
+                    return result.posts;
+                }
+            }
+        )
+    }, [])
 
-    const { data: user, isFetching, isSuccess } = useGetUserQuery(userId);
+    const { postsForUser } = useGetPostsQuery(undefined, {
+        selectFromResult: (result) => ({
+            postsForUser: selectPostsForUser(result, userId)
+        }),
+    })
+    
+    
+    const postsTitles = postsForUser.map((post) => (
+        <li key={post.id}>{post.title}</li>
+    ))
 
-    let content;
-    if (isFetching) {
-        content = <span>Loading...</span>
-    } else if (isSuccess) {
-        content = (
+    let content = (
             <article className='user-article'>
                 <h2>{user.name}</h2>
                 <div>
@@ -29,7 +61,12 @@ export const SingleUserPage = () => {
                 <Link to={`/editUser/${user.id}`} className="button">Edit user</Link>
             </article>
         )
-    }
+    
 
-    return <section>{content}</section>
+    return (
+    <   section>
+            {content}
+            <ul>{postsTitles}</ul>
+        </section>
+    )
 }

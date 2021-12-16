@@ -6,8 +6,10 @@ import store from './app/store';
 import { Provider } from 'react-redux';
 import * as serviceWorker from './serviceWorker';
 import { extendedApiSlice } from './features/todos/todosSlice';
+import { apiSlice } from './features/api/apiSlice';
 
-store.dispatch(extendedApiSlice.endpoints.getTodos.initiate())
+store.dispatch(extendedApiSlice.endpoints.getTodos.initiate());
+store.dispatch(apiSlice.endpoints.getPosts.initiate());
 
 ReactDOM.render(
   <React.StrictMode>
