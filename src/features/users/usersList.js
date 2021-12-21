@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import { useGetUsersQuery, selectAllUsers } from '../users/usersSlice';
+import { selectAllUsers } from '../api/apiSlice';
 import { AddNewUserForm } from './AddNewUserForm';
 import classnames from 'classnames';
 import { useSelector } from 'react-redux';

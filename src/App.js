@@ -10,7 +10,7 @@ import './App.css';
 
 import { UsersList } from './features/users/UsersList';
 import { SingleUserPage } from './features/users/SingleUserPage'
-import { EditUserForm } from './features/users/EditUserForm';
+import { EditUserPage } from './features/users/EditUserPage';
 import { TodosList } from './features/todos/TodosList';
 
 function App() {
@@ -18,7 +18,7 @@ function App() {
     <Router>
       <div className="App">
         <Routes>
-        <Route exact path="/editUser/:userId" element={<EditUserForm />}>
+        <Route exact path="/editUser/:userId" element={<EditUserPage />}>
           </Route>
           <Route exact path='/users' element={<UsersList />}>
           </Route>

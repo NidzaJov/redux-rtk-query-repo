@@ -3,11 +3,8 @@ import { useSelector } from 'react-redux'
 import { Link, useParams } from 'react-router-dom'
 import { createSelector } from '@reduxjs/toolkit'
 
-
-import { selectUserById } from './usersSlice';
+import { selectUserById } from '../api/apiSlice';
 import { useGetPostsQuery } from '../api/apiSlice';
-
-
 
 export const SingleUserPage = () => {
     const { userId } = useParams();

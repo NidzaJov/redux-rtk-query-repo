@@ -1,58 +1,56 @@
 import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
-import { useEditUserMutation } from '../api/apiSlice';
-import { useGetUserQuery, selectUserById, extUsersApiSlice } from '../users/usersSlice'
+import { useGetUserQuery, useEditUserMutation } from '../api/apiSlice';
 
-export const EditUserForm = () => {
+
+export const EditUserPage = () => {
     const { userId } = useParams();
-    console.log(userId);
-    const navigate = useNavigate();
-    //extUsersApiSlice.endpoints.getUser.initiate(userId);
-    const { data: user = {} } = useGetUserQuery(userId);
-    //const user = selectUserById(userId);
-    const [ updateUser, { isLoading }] = useEditUserMutation();
-    console.log(user);
-    const [ name, setName ] = useState(user.name);
-    const [userName, setUserName] = useState(user.username);
-    const [email, setEmail] = useState(user.email);
-    const [street, setStreet] = useState(user.address.street);
-    const [suite, setSuite] = useState(user.address.suite);
-    const [city, setCity] = useState(user.address.city);
-    const [zipCode, setZipCode] = useState(user.address.zipcode);
-    const [phone, setPhone] = useState(user.phone);
-    const [website, setWebsite] = useState(user.website);
-    const [companyName, setCompanyName] = useState(user.company.name);
-    const [catchPhrase, setCatchPhrase] = useState(user.company.catchPhrase);
-    const [bs, setBs] = useState(user.company.bs);
+    const navigate = useNavigate();  
 
-    const onSaveUserClicked = async () => {
-        if (name && userName && email) {
-            await updateUser({
-                id: userId,
-                name: name,
-                userName: userName,
-                email: email,
-                address: {
-                    street: street,
-                    suite: suite,
-                    city: city,
-                    zipcode: zipCode
-                },
-                phone: phone,
-                website: website,
-                company: {
-                    name: companyName,
-                    catchPhrase: catchPhrase,
-                    bs: bs
-                }
-            });
-            navigate(`/users/${userId}`)
-        }
-    }
+    const { data, isFetching } = useGetUserQuery(userId);
 
-    return (
-        <section>
+    const EditUserForm = ({ user }) => {
+        const [ name, setName ] = useState(user.name?? '');
+        const [userName, setUserName] = useState(user.username?? '');
+        const [email, setEmail] = useState(user.email?? '');
+        const [street, setStreet] = useState(user.address.street?? '');
+        const [suite, setSuite] = useState(user.address.suite?? '');
+        const [city, setCity] = useState(user.address.city?? '');
+        const [zipCode, setZipCode] = useState(user.address.zipcode?? '');
+        const [phone, setPhone] = useState(user.phone?? '');
+        const [website, setWebsite] = useState(user.website?? '');
+        const [companyName, setCompanyName] = useState(user.company.name?? '');
+        const [catchPhrase, setCatchPhrase] = useState(user.company.catchPhrase?? '');
+        const [bs, setBs] = useState(user.company.bs?? '');            
+
+        const [ updateUser, { isLoading: isItLoading }] = useEditUserMutation();
+        const onSaveUserClicked = async () => {
+            if (name && userName && email) {
+                await updateUser({
+                    id: userId,
+                    name: name,
+                    userName: userName,
+                    email: email,
+                    address: {
+                        street: street,
+                        suite: suite,
+                        city: city,
+                        zipcode: zipCode
+                    },
+                    phone: phone,
+                    website: website,
+                    company: {
+                        name: companyName,
+                        catchPhrase: catchPhrase,
+                        bs: bs
+                    }
+                });
+                navigate(`/users/${userId}`)
+            }
+        }  
+
+        return (<section>
             <h3>Edit user:</h3>
             <form className="add-user-form">
                 <label htmlFor="name">
@@ -95,9 +93,19 @@ export const EditUserForm = () => {
                 </label>
 
                 <div>
-                    <button type="button" onClick={onSaveUserClicked} disabled={isLoading}>Save user</button>
+                    <button type="button" onClick={onSaveUserClicked} disabled={isItLoading}>Save user</button>
                 </div>
             </form>
         </section>
-    )
+        )
+    }
+        
+    if (isFetching) {
+        return <div>Loading...</div>
+    }
+    else {
+        const userToEdit = data.entities[userId];
+        return <EditUserForm user={userToEdit}></EditUserForm>
+    }
+   
 }
