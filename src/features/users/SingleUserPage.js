@@ -2,9 +2,12 @@ import React, { useMemo } from 'react'
 import { useSelector } from 'react-redux'
 import { Link, useParams } from 'react-router-dom'
 import { createSelector } from '@reduxjs/toolkit'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faImages } from '@fortawesome/free-solid-svg-icons'
+
 
 import { selectUserById } from '../api/apiSlice';
-import { useGetPostsQuery } from '../api/apiSlice';
+import { useGetPostsQuery, useGetAlbumsQuery } from '../api/apiSlice';
 
 export const SingleUserPage = () => {
     const { userId } = useParams();
@@ -33,6 +36,7 @@ export const SingleUserPage = () => {
             postsForUser: selectPostsForUser(result, userId)
         }),
     })
+
     
     
     const postsTitles = postsForUser.map((post) => (
@@ -50,6 +54,8 @@ export const SingleUserPage = () => {
                         <span>Website: {user.website}</span>
                         <span>Company: {user.company.name}</span>
                     </div>
+                   
+
                     <div>
                         <Link to={`/editUser/${user.id}`} className="button">Edit user</Link>
                     </div>
@@ -58,12 +64,34 @@ export const SingleUserPage = () => {
                 
             </article>
         )
-    
 
+    const UserAlbumsList = ( {albums} ) => {
+        console.log(albums);
+        return (
+            <div className="user-albums-div">
+                <h3>Albums</h3>
+                {albums.ids.map((id) => <div key={id} className="album-item-div"><span>{albums.entities[id].title}</span>
+                 <Link to={`/albums/${id}`}><FontAwesomeIcon icon={faImages} className='album-icon'/></Link>
+                </div>)}
+            </div>
+        )
+    }
+    
+    const { data: albumsData, isFetching } = useGetAlbumsQuery(userId);
+    
     return (
         <section className="user-page-section">
             {content}
-            <ul>{postsTitles}</ul>
+            <div className="user-page-contents">
+            <ul className='user-todos-list'>
+                <h3>Todos</h3>
+                {postsTitles}
+                </ul>
+            {isFetching ? <div>Albums loading ...</div>
+            : <UserAlbumsList albums={albumsData}></UserAlbumsList>}
+            </div>
+            
+            
         </section>
     )
 }

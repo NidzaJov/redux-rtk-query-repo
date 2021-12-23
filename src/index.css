@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  box-sizing: border-box;
 }
 
 code {
@@ -14,6 +15,10 @@ code {
 
 p {
   font-size: 1.1rem;
+}
+
+img {
+  width: 100%;
 }
 
 section {
@@ -94,19 +99,16 @@ button:disabled:hover {
   padding: 0.75rem 1rem;
 }
 
-.user-data-div {
-  display: flex;
-  flex-direction: column;
-}
-
-.user-data-div {
-  text-align: left;
-}
-
 .user-article > div {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+}
+
+.user-data-div {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
 }
 
 .user-data-div + div {
@@ -116,18 +118,65 @@ button:disabled:hover {
   align-items: center;
 }
 
-.user-page-section > ul {
-  display: flex;
-  flex-direction: column;
-  align-items:flex-start;
-}
 
 .todo-li {
-  width: 50%;
+  width: 90%;
   text-align: left;
   border: 1px;
   border-radius: 4px;
   margin-bottom: 10px;
   background-color: #fbd249;
   padding: 0.75rem 1rem;
+}
+
+.user-page-contents {
+  display: flex;
+  flex-direction: wrap;
+  justify-content: space-between;
+}
+
+.user-todos-list {
+  display: flex;
+  flex-direction: column;
+  align-items:flex-start;
+  background-color: #f39a4f;
+  padding: 1rem 1rem 1rem 2rem;
+  flex-grow: 1;
+  flex-basis: 50%;
+  margin-block-start: 0rem;
+  margin-block-end: 0rem;
+  margin: 0.5rem 0.25rem 0.5rem 0.5rem;
+}
+
+.user-albums-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  background-color: #4ab6d9;
+  padding: 1rem;
+  flex-grow: 1;
+  flex-basis: 50%;
+  margin: 0.5rem 0.5rem 0.5rem 0.25rem;
+}
+
+.album-item-div {
+  background-color: #eb6092;
+  border-radius: 4px;
+  margin-top: 1rem;
+  width: 90%;
+  padding: 0.5rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@media screen and (max-width: 600px) {
+  .user-page-contents {
+    flex-direction: column;
+  }
+
+  .user-todos-list, .user-albums-div {
+    margin: 0.5rem 0.5rem 0.5rem 0.5rem;
+  }
 }

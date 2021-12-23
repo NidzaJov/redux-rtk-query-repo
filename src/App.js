@@ -12,6 +12,7 @@ import { UsersList } from './features/users/UsersList';
 import { SingleUserPage } from './features/users/SingleUserPage'
 import { EditUserPage } from './features/users/EditUserPage';
 import { TodosList } from './features/todos/TodosList';
+import { SingleAlbumPage } from './features/albums/SingleAlbumPage';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           <Route exact path="/users/:userId" element={<SingleUserPage />}>
           </Route>
           <Route exact path="/todos" element={<TodosList />} />
+          <Route exact path="/albums/:albumId" element={<SingleAlbumPage />} />
           <Route exact path="/" element={<Navigate to="/users"/>}>
             
           </Route>
