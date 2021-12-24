@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { useGetPhotosQuery } from "../api/apiSlice";
 
 import styles from "./SingleAlbumPage.module.css"
@@ -12,12 +12,19 @@ export const SingleAlbumPage = () => {
     return (
         isFetching?  <div>Pictures loading...</div>
         :<div className={styles.album_page}>
-            {photos.ids.map(id => <div key={id} className="image-div">
-                <div>
-                    <img src={photos.entities[id].url} alt="jspc" style={{ height: "100px", width: "100px"  }}></img>
-                </div>
-            {photos.entities[id].title}
-            </div>)}
+            <div className={styles.images_container}>
+                {photos.ids.map(id => <div key={id} className={styles.image_container}>
+                    <div className={styles.image_div}>
+                        <Link to={`/images/${id}`}>
+                            <img src={photos.entities[id].url} alt="jspc" style={{ height: "70px", width: "70px"  }}></img>
+                        </Link>
+                    </div>
+                    <div className={styles.image_title_div}>
+                    <   span>{photos.entities[id].title}</span>
+                    </div>
+            
+                </div>)}
+            </div>
         </div>
     )
 }
