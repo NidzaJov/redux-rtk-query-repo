@@ -1,9 +1,10 @@
 import { useParams, Link } from "react-router-dom";
 import { useGetPhotosQuery } from "../api/apiSlice";
 
-import styles from "./SingleAlbumPage.module.css"
+import  styles  from "./SingleAlbumPage.module.css"
 
 export const SingleAlbumPage = () => {
+    console.log('Styles', styles)
     const { albumId } = useParams();
 
     const { data: photos, isFetching } = useGetPhotosQuery(albumId)
@@ -15,7 +16,7 @@ export const SingleAlbumPage = () => {
             <div className={styles.images_container}>
                 {photos.ids.map(id => <div key={id} className={styles.image_container}>
                     <div className={styles.image_div}>
-                        <Link to={`/images/${id}`}>
+                        <Link to={`/photos/${id}`}>
                             <img src={photos.entities[id].url} alt="jspc" style={{ height: "70px", width: "70px"  }}></img>
                         </Link>
                     </div>

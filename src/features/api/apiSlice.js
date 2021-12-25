@@ -66,6 +66,13 @@ export const apiSlice = createApi({
             }
         }),
 
+        getPhoto: builder.query({
+            query: (pictureId) => `/photos/${pictureId}`,
+            transformResponse: responseData => {
+                return photosAdapter.setOne(photosInitialState, responseData);
+            }
+        }),
+
         editUser: builder.mutation({
             query: (user) => ({
                 url: `/users/${user.id}`,
@@ -98,5 +105,6 @@ export const {
     useGetPostsQuery,
     useEditUserMutation,
     useGetAlbumsQuery,
-    useGetPhotosQuery
+    useGetPhotosQuery,
+    useGetPhotoQuery
 } = apiSlice
