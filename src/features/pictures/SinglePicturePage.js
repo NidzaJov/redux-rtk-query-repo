@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useGetPhotoQuery } from '../api/apiSlice';
+import Canvas from './Canvas';
 
 import { ImageSlider } from './ImageSlider';
 
@@ -9,7 +10,11 @@ import  styles  from './SinglePicturePage.module.css'
 export const SinglePicturePage = () => {
     const { pictureId } = useParams();
     const {data, isFetching } = useGetPhotoQuery(pictureId);
-    const [photosIds, setPhotosIds] = useState([])
+    const [photosIds, setPhotosIds] = useState([]);
+
+    const draw = context => {
+        context.fillRect(0, 0, 150, 75)
+    }
 
     const getNextId = (pictureId) => {
         if (photosIds) {
@@ -33,6 +38,8 @@ export const SinglePicturePage = () => {
             }
         }
     }
+
+    
  
     return (
         isFetching? <div>Image loading...</div>
@@ -45,6 +52,9 @@ export const SinglePicturePage = () => {
                 <p id="caption">{data.entities[pictureId].title}</p>
             </div>
             <ImageSlider passPhotosIds={setPhotosIds} albumId={data.entities[pictureId].albumId} pictureId={pictureId}></ImageSlider>
+            <div>
+                <Canvas draw={draw} height={300} width={600}/>
+            </div>
           </div>
 
     )
