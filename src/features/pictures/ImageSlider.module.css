@@ -1,0 +1,8 @@
+.slider {
+    display:flex;
+}
+
+.picture {
+    width: 60px;
+    height: 60px;
+}

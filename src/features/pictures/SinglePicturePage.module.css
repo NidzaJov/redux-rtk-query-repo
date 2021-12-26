@@ -8,6 +8,14 @@
     position: relative;
 }
 
+.numbertext {
+    color: #f2f2f2;
+    font-size: 12px;
+    padding : 8px 12px;
+    position: absolute;
+    top: 0;
+}
+
 .picture {
     position: relative;
     width: 100%;
