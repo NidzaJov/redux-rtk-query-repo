@@ -13,6 +13,6 @@
 
 
 
-.picture:hover {
+.active, .picture:hover {
     opacity: 1;
 }
