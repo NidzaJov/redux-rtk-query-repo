@@ -66,7 +66,6 @@ export const SingleUserPage = () => {
         )
 
     const UserAlbumsList = ( {albums} ) => {
-        console.log(albums);
         return (
             <div className="user-albums-div">
                 <h3>Albums</h3>

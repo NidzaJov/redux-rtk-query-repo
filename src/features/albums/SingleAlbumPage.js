@@ -4,12 +4,10 @@ import { useGetPhotosQuery } from "../api/apiSlice";
 import  styles  from "./SingleAlbumPage.module.css"
 
 export const SingleAlbumPage = () => {
-    console.log('Styles', styles)
     const { albumId } = useParams();
 
     const { data: photos, isFetching } = useGetPhotosQuery(albumId)
 
-    
     return (
         isFetching?  <div>Pictures loading...</div>
         :<div className={styles.album_page}>

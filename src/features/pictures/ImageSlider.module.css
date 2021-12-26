@@ -1,8 +1,18 @@
 .slider {
     display:flex;
+    justify-content: center;
+}
+
+.picture_container {
+    width: 20%;
 }
 
 .picture {
-    width: 60px;
-    height: 60px;
+    opacity: 0.6
+}
+
+
+
+.picture:hover {
+    opacity: 1;
 }

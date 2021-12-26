@@ -37,10 +37,13 @@ export const SinglePicturePage = () => {
     return (
         isFetching? <div>Image loading...</div>
         : <div className={styles.image_container}>
-            <div className={styles.numbertext}>{data.entities[pictureId].id}</div>
+            <div className={styles.numbertext}>{photosIds.indexOf(Number(pictureId)) + 1}/{photosIds.length}</div>
             <img src={data.entities[pictureId].url} alt="solo-entity" className={styles.picture}></img>
             <Link className={styles.prev} to={`/photos/${getPreviousId(pictureId)}`}>&#10094;</Link>
             <Link className={styles.next} to={`/photos/${getNextId(pictureId)}`}>&#10095;</Link>
+            <div className={styles.caption_container}>
+                <p id="caption">{data.entities[pictureId].title}</p>
+            </div>
             <ImageSlider passPhotosIds={setPhotosIds} albumId={data.entities[pictureId].albumId} pictureId={pictureId}></ImageSlider>
           </div>
 
