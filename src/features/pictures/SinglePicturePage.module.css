@@ -26,7 +26,7 @@
 .prev {
     cursor: pointer;
     position: absolute;
-    top: 40%;
+    top: 300px;
     width: 3rem;
     padding: 16px;
     color: white;
@@ -39,7 +39,7 @@
 .next {
     cursor: pointer;
     position: absolute;
-    top: 40%;
+    top: 300px;
     width: 3rem;
     padding: 16px;
     color: white;
