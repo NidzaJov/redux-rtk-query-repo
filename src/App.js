@@ -14,6 +14,7 @@ import { EditUserPage } from './features/users/EditUserPage';
 import { TodosList } from './features/todos/TodosList';
 import { SingleAlbumPage } from './features/albums/SingleAlbumPage';
 import { SinglePicturePage } from './features/pictures/SinglePicturePage';
+import { SvgPage } from './features/pictures/SvgPage'
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
           <Route exact path="/todos" element={<TodosList />} />
           <Route exact path="/albums/:albumId" element={<SingleAlbumPage />} />
           <Route exact path="/photos/:pictureId" element={<SinglePicturePage />}/>
+          <Route exact path="/svg" element={<SvgPage />} />
           <Route exact path="/" element={<Navigate to="/users"/>}>
             
           </Route>
