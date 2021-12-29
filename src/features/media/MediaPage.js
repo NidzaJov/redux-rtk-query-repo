@@ -1,7 +1,9 @@
-import { useEffect, useRef, useMemo } from 'react'
+import { useEffect, useRef } from 'react'
 import video from '../../videos/video_PBozovic.mp4';
 import audio from '../../audio/file_example_MP3_1MG.mp3';
 import dragImage from '../../images/pexels-shotkit-5355641.jpg';
+import WebWorker from './demo_worker';
+import WebWorkerBuilder from './WebWorkerBuilder';
 
 export const MediaPage = () => {
     const myVideo = useRef();
@@ -10,13 +12,15 @@ export const MediaPage = () => {
     const drag1 = useRef();
     const divToCopy = useRef();
     const inDivToCopyTo = useRef();
-    const clickCounter = useRef()
+    const clickCounter = useRef();
+    const result = useRef();
 
     useEffect(() => {
         console.log(myAudio.current)
         myAudio.current.currentTime = 10;
         myVideo.current.currentTime = 0;
     } , [])
+
         
     const playPause = () => {
         if (myVideo.current.paused) 
@@ -68,6 +72,29 @@ export const MediaPage = () => {
         clickCounter.current.innerHTML = `You clicked button  ${sessionStorage.clickCount} time(s) in this sesion`
     }
 
+    let w;
+
+    function startWorker() {
+        console.log(window.location.href)
+        if (typeof(Worker) !== "undefined") {
+            if (typeof(w) == "undefined") {
+                w = new WebWorkerBuilder(WebWorker);
+            }
+            w.onmessage = function(event) {
+                result.current.innerHTML = event.data;
+            };
+        } else {
+            result.current.innerHTML = "Sorry, your browser not support Web Workers..."
+        }
+    }
+
+    function stopWorker() {
+        w.terminate();
+        w = undefined
+    }
+
+
+
     return (
         <div>
             <h2>Media Page</h2>
@@ -108,6 +135,11 @@ export const MediaPage = () => {
                 <button onClick={() => localStorageCount()}>Click</button>
                 <br />
                 <span ref={clickCounter}>You clicked button  0 time(s) in this sesion</span>
+            </div>
+            <div>
+                <p>Count numbers: <output ref={result}></output></p>
+                <button onClick={() => startWorker()} >Start Worker</button>
+                <button onClick={() => stopWorker()}>Stop Worker</button>
             </div>
         </div>
     )
