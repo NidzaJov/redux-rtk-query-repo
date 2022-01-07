@@ -1,0 +1,40 @@
+.apendix_div {
+    max-width: 800px;
+    display: flex;
+    flex-direction: column;
+    margin: 0px auto;
+    background-color: #f0f0f0;
+
+}
+
+.user_div {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.user_select {
+    width: fit-content;
+}
+
+.posts {
+    display: flex;
+    width: 90%;
+    flex-direction: column;
+    align-items: center;
+}
+
+.post {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    border-radius: 1rem;
+    background-color: white;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.post p {
+    text-align: left;
+}

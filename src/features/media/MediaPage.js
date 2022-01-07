@@ -51,7 +51,6 @@ export const MediaPage = () => {
 
     const drop = (ev) => {
         ev.preventDefault();
-        const data = ev.dataTransfer.getData("text");
         ev.target.appendChild(drag1.current)
     }
 

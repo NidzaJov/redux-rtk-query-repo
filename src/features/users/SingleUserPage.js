@@ -20,7 +20,7 @@ export const SingleUserPage = () => {
             (state, userId) => {
                 if (state.isSuccess) {
                     const result = Object.keys(state.data.entities).reduce((acc, key, i) => {
-                        if (state.data.entities[key].userId == userId) {
+                        if (state.data.entities[key].userId === Number(userId)) {
                             acc.posts.push(state.data.entities[key])
                         } 
                         return acc;

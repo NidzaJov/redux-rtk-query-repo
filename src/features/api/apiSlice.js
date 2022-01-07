@@ -13,6 +13,9 @@ const albumsInitialState = albumsAdapter.getInitialState();
 const photosAdapter = createEntityAdapter();
 const photosInitialState = photosAdapter.getInitialState();
 
+export const commentsAdapter = createEntityAdapter();
+export const commentsInitialState = commentsAdapter.getInitialState();
+
 export const apiSlice = createApi({
     baseQuery: fetchBaseQuery({ baseUrl:'https://jsonplaceholder.typicode.com'}),
     tagTypes: ['User'],
@@ -35,6 +38,7 @@ export const apiSlice = createApi({
                 ...result.map(({ id }) => ({ type: 'User', id}))
             ]
         }),
+
         getUser: builder.query({
             query: (userId) => `/users/${userId}`,
             transformResponse: responseData => {
@@ -50,6 +54,14 @@ export const apiSlice = createApi({
                 body: initialUser
             }),
             invalidatesTags: ['User']
+        }),
+
+        getComments: builder.query({
+            query: (postId) => `/posts/${postId}/comments`,
+            transformResponse: responseData => {
+                console.log('Response', responseData);
+                return commentsAdapter.setAll(commentsInitialState, responseData);
+            }
         }),
 
         getAlbums: builder.query({
@@ -106,5 +118,6 @@ export const {
     useEditUserMutation,
     useGetAlbumsQuery,
     useGetPhotosQuery,
-    useGetPhotoQuery
+    useGetPhotoQuery,
+    useGetCommentsQuery,
 } = apiSlice
