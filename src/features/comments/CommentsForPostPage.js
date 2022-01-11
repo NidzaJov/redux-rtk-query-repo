@@ -7,13 +7,7 @@ export const CommentsContext = createContext();
 
 export const CommentsForPostPage = () => {
     const { postId } = useParams();
-    console.log('postid;', postId);
     const { data, isFetching } = useGetCommentsQuery(postId);
-    
-    if(!isFetching) {
-        console.log('Data:', data);
-        
-    }
         
     return (
         <div>

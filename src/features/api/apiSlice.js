@@ -58,6 +58,7 @@ export const apiSlice = createApi({
 
         getComments: builder.query({
             query: (postId) => `/posts/${postId}/comments`,
+            keepUnusedDataFor: 3600,
             transformResponse: responseData => {
                 console.log('Response', responseData);
                 return commentsAdapter.setAll(commentsInitialState, responseData);

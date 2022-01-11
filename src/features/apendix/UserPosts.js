@@ -5,31 +5,31 @@ import { useSelector, useDispatch } from 'react-redux';
 import { createSelector } from '@reduxjs/toolkit';
 import { useMemo, useEffect } from 'react';
 
+
 const Comments = ({ postId }) => {
     const dispatch = useDispatch();
     useEffect(() => {
         const result = dispatch(apiSlice.endpoints.getComments.initiate(postId));
         result.unsubscribe()
-    }, [postId])
+    }, [postId, dispatch])
     console.log(postId);
     const selectCommentsResult = useMemo(() => apiSlice.endpoints.getComments.select(postId),
     [postId]);
-    console.log(selectCommentsResult)
     const selectCommentsData = createSelector(
         selectCommentsResult,
         (commentsResult) => commentsResult.data
     )
     const commentsSelectors = commentsAdapter.getSelectors(state => selectCommentsData(state) ?? commentsInitialState);
-    console.log(commentsSelectors);
 
     console.log(useSelector(commentsSelectors.selectTotal))
-    //setTotalComments(useSelector(commentsSelectors.selectTotal));
     const totalComments = useSelector(commentsSelectors.selectTotal);
     
      
 
     return (
-            <div><Link to={`/posts/${postId}/comments`}>Comments({totalComments})</Link></div>
+            <div>
+                <Link to={`/posts/${postId}/comments`}>Comments({totalComments})</Link>
+            </div>
     )
 }
 
@@ -53,7 +53,7 @@ export const UserPosts = ( { userId } ) => {
                 <h4>{post.title}</h4>
                 <p>{post.body}</p>
                 <Comments postId={post.id}/>
-                </div>)}
+            </div>)}
         </div>
     )
 }

@@ -1,15 +1,33 @@
-import { useContext, createContext } from "react";
+import { useContext, createContext, useReducer } from "react";
 import { CommentsContext } from "./CommentsForPostPage";
 
 export const commentContext = createContext();
 
+const commentReducer = (state, action) => {
+    switch(action.type) {
+        case 'TOGGLE':
+            return {
+                ...state,
+                toggled: !state.toggled
+            }
+            default: {
+                return state
+            }
+    }
+}
+
 const Comment = () => {
     const comment = useContext(commentContext);
+    const [context, dispatch] = useReducer(commentReducer, { comment, toggled: false})
+    const clickToggle = () => {
+        dispatch({ type: 'TOGGLE'})
+    }
 
     return (
-        <div>
+        <div style={context.toggled? { backgroundColor: "red"} : {backgroundColor: "white"}}>
             <h5>{comment.name}</h5>
             <p>{comment.body}</p>
+            <input type="checkbox" onClick={clickToggle}></input>
         </div>
     )
 }
