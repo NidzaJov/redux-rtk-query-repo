@@ -1,5 +1,8 @@
 import { useContext, createContext, useReducer } from "react";
 import { CommentsContext } from "./CommentsForPostPage";
+import { useToogle } from "./useToogle";
+import styles from './CommentsList.module.css'
+
 
 export const commentContext = createContext();
 
@@ -23,11 +26,18 @@ const Comment = () => {
         dispatch({ type: 'TOGGLE'})
     }
 
+    const [color, toggleValue] = useToogle(true);
+    const changeTextColor = () => {
+        toggleValue();
+    }
+
+
     return (
         <div style={context.toggled? { backgroundColor: "red"} : {backgroundColor: "white"}}>
-            <h5>{comment.name}</h5>
-            <p>{comment.body}</p>
+            <h5 className={color? styles.black_text : styles.blue_text}>{comment.name}</h5>
+            <p className={color? styles.black_text : styles.blue_text}>{comment.body}</p>
             <input type="checkbox" onClick={clickToggle}></input>
+            <button onClick={changeTextColor}>Change text color</button>
         </div>
     )
 }
