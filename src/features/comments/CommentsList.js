@@ -3,6 +3,7 @@ import { CommentsContext } from "./CommentsForPostPage";
 import { useToogle } from "./useToogle";
 import { useTimeout } from "./useTimeout";
 import styles from './CommentsList.module.css'
+import { useDebounce } from "./useDebounce";
 
 
 export const commentContext = createContext();
@@ -47,6 +48,8 @@ export const  CommentsList = () => {
     const data = useContext(CommentsContext)
     const [count, setCount] = useState(0);
     const { clear, reset } = useTimeout(() => setCount(count => count -1 ), 1000)
+    const [value, setValue] = useState(10);
+    useDebounce(() => alert(value), 1000, [value])
     return (
         <div>
             <div>{count}</div>
@@ -58,6 +61,10 @@ export const  CommentsList = () => {
                     <Comment></Comment>
                 </commentContext.Provider>
             </div>)}
+            <div>
+                <div>{value}</div>
+                <button onClick={() => setValue(v => v + 1)}>Increment</button>
+            </div>
         </div>
         
     )
