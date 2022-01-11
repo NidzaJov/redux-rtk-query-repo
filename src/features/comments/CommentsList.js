@@ -4,6 +4,7 @@ import { useToogle } from "./useToogle";
 import { useTimeout } from "./useTimeout";
 import styles from './CommentsList.module.css'
 import { useDebounce } from "./useDebounce";
+import { useUpdateEffect } from "./useUpdateEffect";
 
 
 export const commentContext = createContext();
@@ -49,7 +50,11 @@ export const  CommentsList = () => {
     const [count, setCount] = useState(0);
     const { clear, reset } = useTimeout(() => setCount(count => count -1 ), 1000)
     const [value, setValue] = useState(10);
-    useDebounce(() => alert(value), 1000, [value])
+    console.log(value)
+    //useDebounce(() => alert(value), 1000, [value])
+    useUpdateEffect(() => {
+        alert(value); 
+    }, [value]) 
     return (
         <div>
             <div>{count}</div>
