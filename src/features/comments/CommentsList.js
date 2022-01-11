@@ -1,6 +1,7 @@
-import { useContext, createContext, useReducer } from "react";
+import { useContext, createContext, useReducer, useState } from "react";
 import { CommentsContext } from "./CommentsForPostPage";
 import { useToogle } from "./useToogle";
+import { useTimeout } from "./useTimeout";
 import styles from './CommentsList.module.css'
 
 
@@ -44,8 +45,14 @@ const Comment = () => {
 
 export const  CommentsList = () => {
     const data = useContext(CommentsContext)
+    const [count, setCount] = useState(0);
+    const { clear, reset } = useTimeout(() => setCount(count => count -1 ), 1000)
     return (
         <div>
+            <div>{count}</div>
+            <button onClick={() => setCount(10)}>Set</button>
+            <button onClick={clear}>Clear TimeOut</button>
+            <button onClick={reset}>Reset TimeOut</button>
             {data.ids.map(id => <div key={id}>
                 <commentContext.Provider value={data.entities[id]}>
                     <Comment></Comment>
