@@ -5,6 +5,7 @@ import { useTimeout } from "./useTimeout";
 import styles from './CommentsList.module.css'
 import { useDebounce } from "./useDebounce";
 import { useUpdateEffect } from "./useUpdateEffect";
+import { useArray } from "./useArray";
 
 
 export const commentContext = createContext();
@@ -55,6 +56,7 @@ export const  CommentsList = () => {
     useUpdateEffect(() => {
         alert(value); 
     }, [value]) 
+    const { array, set, push, filter, update, remove, clearArray } = useArray([1, 2, 3, 4, 5, 6])
     return (
         <div>
             <div>{count}</div>
@@ -69,6 +71,15 @@ export const  CommentsList = () => {
             <div>
                 <div>{value}</div>
                 <button onClick={() => setValue(v => v + 1)}>Increment</button>
+            </div>
+            <div>
+                <div>{array.join(', ')}</div>
+                <button onClick={() => push(7)}>Push 7</button>
+                <button onClick={() => update(1, 9)}>Change second element to 9</button>
+                <button onClick={() => remove(1)} >Remove second element</button>
+                <button onClick={() => filter(n => n < 3)}>Keep numbers less than 4</button>
+                <button onClick={() => set([1, 2])}>Set to 1, 2</button>
+                <button onClick={() => clearArray()}>Clear</button>
             </div>
         </div>
         
