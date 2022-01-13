@@ -18,28 +18,31 @@ import { SvgPage } from './features/pictures/SvgPage';
 import { MediaPage} from './features/media/MediaPage';
 import { ApendixPage } from './features/apendix/ApendixPage'
 import { CommentsForPostPage } from './features/comments/CommentsForPostPage';
+import { MainLayout } from '../src/views/MainLayout'
 
 function App() {
   return (
     <Router>
       <div className="App">
-        <Routes>
-        <Route exact path="/editUser/:userId" element={<EditUserPage />}>
-          </Route>
-          <Route exact path='/users' element={<UsersList />}>
-          </Route>
-          <Route exact path="/users/:userId" element={<SingleUserPage />}>
-          </Route>
-          <Route exact path="/todos" element={<TodosList />} />
-          <Route exact path="/albums/:albumId" element={<SingleAlbumPage />} />
-          <Route exact path="/photos/:pictureId" element={<SinglePicturePage />}/>
-          <Route exact path="/svg" element={<SvgPage />} />
-          <Route exact path="/media" element={<MediaPage />} />
-          <Route exact path="/apendix" element={<ApendixPage />} />
-          <Route exact path="/posts/:postId/comments" element={<CommentsForPostPage />} />
-          <Route exact path="/" element={<Navigate to="/users"/>}>
-          </Route>
-        </Routes>
+        <MainLayout>
+          <Routes>
+          <Route exact path="/editUser/:userId" element={<EditUserPage />}>
+            </Route>
+            <Route exact path='/users' element={<UsersList />}>
+            </Route>
+            <Route exact path="/users/:userId" element={<SingleUserPage />}>
+            </Route>
+            <Route exact path="/todos" element={<TodosList />} />
+            <Route exact path="/albums/:albumId" element={<SingleAlbumPage />} />
+            <Route exact path="/photos/:pictureId" element={<SinglePicturePage />}/>
+            <Route exact path="/svg" element={<SvgPage />} />
+            <Route exact path="/media" element={<MediaPage />} />
+            <Route exact path="/apendix" element={<ApendixPage />} />
+            <Route exact path="/posts/:postId/comments" element={<CommentsForPostPage />} />
+            <Route exact path="/" element={<Navigate to="/users"/>}>
+            </Route>
+          </Routes>
+        </MainLayout>
       </div>
     </Router>
     
