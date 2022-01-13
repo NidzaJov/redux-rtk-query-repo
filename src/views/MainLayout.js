@@ -53,7 +53,7 @@ export const MainLayout = (props) => {
                 <div className={styles.search_container}>
                     <form>
                         <input type="text" placeholder="Search..." name="search"></input>
-                        <button type="submit" class={styles.search_button}><FontAwesomeIcon icon="search"></FontAwesomeIcon></button>
+                        <button type="submit" className={styles.search_button}><FontAwesomeIcon icon="search"></FontAwesomeIcon></button>
                     </form>
                     
                 </div>

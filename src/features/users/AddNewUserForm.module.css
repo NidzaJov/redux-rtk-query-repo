@@ -1,0 +1,49 @@
+.add_user_section {
+    width: 60%;
+    margin-left: 0;
+    padding-left: 0;
+    background-color: #F5FFFA;
+}
+
+.users_article {
+    padding: 0.25rem 0.25rem;
+    border: 1px solid rgb(177, 174, 174);
+    border-radius: 7px;
+  }
+  
+  .button {
+    display: inline-block;
+    background: #1976d2;
+    color: white;
+    border-radius: 4px;
+    font-weight: 700;
+    padding: 0.75rem 1.5rem;
+  }
+  
+  button:disabled,
+  button:disabled:hover {
+    opacity: 0.5;
+  }
+  
+  .add_user_form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+  
+  .add_user_form label {
+    width: 60%;
+    text-align: left;
+    margin-bottom: 5px;
+  }
+  
+  .add_user_form label > * {
+    float: right;
+    width: 40%;
+  }
+
+  .add_user_form label textarea {
+      width: 40%;
+      margin-right: 0px;
+  }

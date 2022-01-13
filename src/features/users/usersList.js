@@ -4,10 +4,11 @@ import { selectAllUsers } from '../api/apiSlice';
 import { AddNewUserForm } from './AddNewUserForm';
 import classnames from 'classnames';
 import { useSelector } from 'react-redux';
+import styles from './UsersList.module.css';
 
 let UserArticle = ({ user }) => {
     return(
-        <article className='userslist-article'> 
+        <article className={styles.userslist_article}> 
             <span>{user.name}</span>
             <Link to={`/users/${user.id}`}>View user</Link>
         </article>
@@ -38,13 +39,13 @@ export const UsersList = () => {
 
     let content;
 
-        const renderedUsers = sortedUsers.map(user => <UserArticle key={user.id} user={user} ></UserArticle>)
-        const containerClassname = classnames('users-container')
-        content = <div className={containerClassname}>{renderedUsers}</div>
+    const renderedUsers = sortedUsers.map(user => <UserArticle key={user.id} user={user} ></UserArticle>)
+    const containerClassname = classnames(styles.users_container)
+    content = <div className={containerClassname}>{renderedUsers}</div>
 
     return (
-        <div>
-            <section className="users-list">
+        <div className={styles.users_view}>
+            <section className={styles.users_list}>
                 <h2>Users</h2>
                 {content}
             </section>

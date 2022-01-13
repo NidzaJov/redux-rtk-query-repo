@@ -1,6 +1,6 @@
 import { useGetUsersQuery, useAddNewUserMutation } from "../api/apiSlice";
 import { useState } from "react";
-
+import styles from './AddNewUserForm.module.css';
 
 
 export const AddNewUserForm = () => {
@@ -47,9 +47,9 @@ export const AddNewUserForm = () => {
     }
 
     return (
-        <section>
+        <section class={styles.add_user_section}>
             <h3>Add new user:</h3>
-            <form className="add-user-form">
+            <form className={styles.add_user_form}>
                 <label htmlFor="name">
                     Name: <input type="text" value={name} onChange={(e) => setName(e.target.value)}/>
                 </label>
