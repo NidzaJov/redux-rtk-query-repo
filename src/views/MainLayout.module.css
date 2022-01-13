@@ -34,15 +34,59 @@
     display: none;
 }
 
+.navigation_div .search_container {
+    width: 50%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.navigation_div .search_container form {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    width: 95%;
+}
+
+.navigation_div input[type="text"] {
+    padding: 6px;
+    margin-top: 8px;
+    font-size: 17px;
+    border: none;
+    width: 80%;
+}
+
+.navigation_div .search_container .search_button {
+    padding: 6px 10px;
+    margin-top: 8px;
+    margin-right: 16px;
+    background: #ddd;
+    font-size: 17px;
+    border: none;
+    cursor: pointer;
+    width: fit-content;
+}
+
 @media screen and (max-width: 600px) {
     .navigation_div button:not(:first-child) {
         display: none;
     }
 
-    .navigation_div button.icon {
+    .navigation_div .search_container {
+        width: 50%;
         float: right;
         display: block;
         margin-left: auto;
+    }
+
+    .navigation_div .search_container .search_button { 
+        display: initial;
+    }
+
+
+    .navigation_div button.icon {
+        float: right;
+        display: block;
+        margin-left: 1%;
     }
 
     .navigation_div_responsive {
@@ -61,9 +105,45 @@
         text-align: left;
     }
 
+    .navigation_div_responsive .search_container {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #333;
+        border: 1px solid #333
+    }
+
+    .navigation_div_responsive .search_container form {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        width: 50%;
+    }
+
+    .navigation_div_responsive input[type="text"] {
+        padding: 6px;
+        font-size: 17px;
+        border: none;
+        width: 80%;
+    }
+    
+    .navigation_div_responsive .search_container .search_button {
+        padding: 6px 10px;
+        margin-right: 16px;
+        background: #ddd;
+        font-size: 17px;
+        border: none;
+        cursor: pointer;
+        width: fit-content;
+    }
+
     .navigation_div_responsive .icon {
         position: absolute;
         right: 0;
         top: 0;
     }
+
+    
 }

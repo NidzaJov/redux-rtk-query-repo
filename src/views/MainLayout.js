@@ -1,8 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import { useState, useRef } from "react";
 import styles from './MainLayout.module.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBars } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
 
 
 
@@ -50,6 +50,14 @@ export const MainLayout = (props) => {
                 <button onClick={goToApendix} className={activeButton === 'apendix'? styles.active_button : styles.nav_button}>Apendix</button>
                 <button onClick={goToMedia} className={activeButton === 'media'? styles.active_button : styles.nav_button}>Media</button>
                 <button onClick={goToSvg}className={activeButton === 'svg'? styles.active_button : styles.nav_button}>SVG</button>
+                <div className={styles.search_container}>
+                    <form>
+                        <input type="text" placeholder="Search..." name="search"></input>
+                        <button type="submit" class={styles.search_button}><FontAwesomeIcon icon="search"></FontAwesomeIcon></button>
+                    </form>
+                    
+                </div>
+
                 <button className={styles.icon} onClick={showVerticalNav}><FontAwesomeIcon  icon={faBars} /></button>
             </div>
             <div>

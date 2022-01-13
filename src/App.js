@@ -7,6 +7,8 @@ import {
 } from 'react-router-dom';
 
 import './App.css';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 import { UsersList } from './features/users/UsersList';
 import { SingleUserPage } from './features/users/SingleUserPage'
@@ -18,7 +20,9 @@ import { SvgPage } from './features/pictures/SvgPage';
 import { MediaPage} from './features/media/MediaPage';
 import { ApendixPage } from './features/apendix/ApendixPage'
 import { CommentsForPostPage } from './features/comments/CommentsForPostPage';
-import { MainLayout } from '../src/views/MainLayout'
+import { MainLayout } from '../src/views/MainLayout';
+
+library.add(faSearch);
 
 function App() {
   return (
