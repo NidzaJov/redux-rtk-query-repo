@@ -1,9 +1,9 @@
 import { useGetUsersQuery, useAddNewUserMutation } from "../api/apiSlice";
-import { useState } from "react";
+import { useState, useRef  } from "react";
 import styles from './AddNewUserForm.module.css';
 
 
-export const AddNewUserForm = () => {
+export const AddNewUserForm = ({ displayed, setDisplayed }) => {
 
     const [ name, setName ] = useState('');
     const [userName, setUserName] = useState('');
@@ -46,8 +46,22 @@ export const AddNewUserForm = () => {
         }
     }
 
+    const addUserElement = useRef();
+    if (addUserElement.current) {
+        if (displayed) {
+            addUserElement.current.className = styles.add_user_section_visible;
+        } 
+    }
+
+    const closeAddUser = () => {
+        addUserElement.current.className = styles.add_user_section;
+        setDisplayed(false);
+    }
+    
+
     return (
-        <section class={styles.add_user_section}>
+        <section ref={addUserElement} className={styles.add_user_section}>
+            <button onClick={closeAddUser} className={styles.closebtn}>&times;</button>
             <h3>Add new user:</h3>
             <form className={styles.add_user_form}>
                 <label htmlFor="name">
@@ -99,3 +113,4 @@ export const AddNewUserForm = () => {
         
     )
 }
+

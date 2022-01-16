@@ -3,6 +3,7 @@
     margin: 0 auto;
     max-width: 800px;
     height: 100%;
+    width: 80%;
 }
 
 .users_list {
@@ -29,6 +30,10 @@
     width: 100%;
     font-size: 17px;
   }
+
+  .userslist_article:hover {
+    color: #f1f1f1;
+  }
   
   .userslist_article span {
     float: left;
@@ -41,6 +46,26 @@
   .users_container.disabled {
     opacity: 0.5;
   }
+
+  .add_user_button {
+    font-size: 17px;
+    font-family: 'Source Sans Pro', sans-serif;
+    border: none;
+    border-radius: 5px;
+    display: inline-block;
+    vertical-align: middle;
+    overflow: hidden;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    white-space: nowrap;
+    user-select: none;
+    color: #fff;
+    background-color: #616161;
+    padding: 8px 16px;
+    margin-bottom: 16px;
+  }
+
   
   
   

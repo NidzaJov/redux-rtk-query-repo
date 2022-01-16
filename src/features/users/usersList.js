@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { selectAllUsers } from '../api/apiSlice';
 import { AddNewUserForm } from './AddNewUserForm';
@@ -43,13 +43,16 @@ export const UsersList = () => {
     const containerClassname = classnames(styles.users_container)
     content = <div className={containerClassname}>{renderedUsers}</div>
 
+    const [displayed, setDisplayed] = useState(false);
+
     return (
         <div className={styles.users_view}>
             <section className={styles.users_list}>
                 <h2>Users</h2>
+                <button className={styles.add_user_button} onClick={() => setDisplayed(true)}>Add new user</button>
                 {content}
             </section>
-            <AddNewUserForm />
+            <AddNewUserForm displayed={displayed} setDisplayed={setDisplayed}/>
         </div>
         
     )
