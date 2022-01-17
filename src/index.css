@@ -57,6 +57,12 @@ section {
 }
 
 
+.user-page-contents {
+  display: flex;
+  flex-direction: wrap;
+  justify-content: space-between;
+}
+
 .todo-li {
   width: 90%;
   text-align: left;
@@ -65,12 +71,6 @@ section {
   margin-bottom: 10px;
   background-color: #fbd249;
   padding: 0.75rem 1rem;
-}
-
-.user-page-contents {
-  display: flex;
-  flex-direction: wrap;
-  justify-content: space-between;
 }
 
 .user-todos-list {
@@ -85,6 +85,7 @@ section {
   margin-block-end: 0rem;
   margin: 0.5rem 0.25rem 0.5rem 0.5rem;
 }
+
 
 .user-albums-div {
   display: flex;
@@ -114,7 +115,11 @@ section {
     flex-direction: column;
   }
 
-  .user-todos-list, .user-albums-div {
+  .user-albums-div {
+    margin: 0.5rem 0.5rem 0.5rem 0.5rem;
+  }
+
+  .user-todos-list {
     margin: 0.5rem 0.5rem 0.5rem 0.5rem;
   }
 }

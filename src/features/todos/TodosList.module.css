@@ -1,0 +1,23 @@
+.todos_list {
+    margin: 0 auto;
+    padding-inline-start: 0;
+    width: 80%;
+}
+
+.todo_li_item {
+    background-color: #04AA6D;
+    padding: 15px;
+    width: 50%;
+    font-size: 14px;
+    color: white;
+    border-radius: 0 5px 5px 0;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    transition: 0.3s;
+}
+
+
+
+
+  
