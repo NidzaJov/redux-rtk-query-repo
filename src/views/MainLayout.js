@@ -32,6 +32,11 @@ export const MainLayout = (props) => {
         setActiveButton('svg');
     }
 
+    const goToTodos = () => {
+        navigate('/todos');
+        setActiveButton('todos')
+    }
+
     const navigationDiv = useRef()
 
     const showVerticalNav = () => {
@@ -46,10 +51,11 @@ export const MainLayout = (props) => {
     return (
         <div>
             <div ref={navigationDiv} className={styles.navigation_div}>
-                <button onClick={goToUsers} className={activeButton === 'users'? styles.active_button : styles.nav_button}>Users</button>
-                <button onClick={goToApendix} className={activeButton === 'apendix'? styles.active_button : styles.nav_button}>Apendix</button>
-                <button onClick={goToMedia} className={activeButton === 'media'? styles.active_button : styles.nav_button}>Media</button>
-                <button onClick={goToSvg}className={activeButton === 'svg'? styles.active_button : styles.nav_button}>SVG</button>
+                <button onClick={goToUsers} className={activeButton === 'users'? styles.active_button : styles.nav_button}><FontAwesomeIcon icon="users"/> Users</button>
+                <button onClick={goToApendix} className={activeButton === 'apendix'? styles.active_button : styles.nav_button}><FontAwesomeIcon icon="paperclip"/> Apendix</button>
+                <button onClick={goToMedia} className={activeButton === 'media'? styles.active_button : styles.nav_button}><FontAwesomeIcon icon='photo-video'/> Media</button>
+                <button onClick={goToSvg} className={activeButton === 'svg'? styles.active_button : styles.nav_button}><FontAwesomeIcon icon="bezier-curve"/> SVG</button>
+                <button onClick={goToTodos} className={activeButton === 'todos'? styles.active_button : styles.nav_button}><FontAwesomeIcon icon="clipboard-check"/> Todos</button>
                 <div className={styles.search_container}>
                     <form>
                         <input type="text" placeholder="Search..." name="search"></input>
