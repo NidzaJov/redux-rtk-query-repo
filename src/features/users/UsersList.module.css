@@ -8,6 +8,17 @@
 
 .users_list {
     height: 100%;
+    width: 100%;
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    background-color: lightblue;
+    overflow-x: hidden;
+}
+
+.users_list_right_sided {
+    height: 100%;
     width: 40%;
     position: absolute;
     z-index: 1;

@@ -3,7 +3,7 @@ import { useState, useRef  } from "react";
 import styles from './AddNewUserForm.module.css';
 
 
-export const AddNewUserForm = ({ displayed, setDisplayed }) => {
+export const AddNewUserForm = ({ displayed, setDisplayed, setRightSided }) => {
 
     const [ name, setName ] = useState('');
     const [userName, setUserName] = useState('');
@@ -56,6 +56,7 @@ export const AddNewUserForm = ({ displayed, setDisplayed }) => {
     const closeAddUser = () => {
         addUserElement.current.className = styles.add_user_section;
         setDisplayed(false);
+        setRightSided(false);
     }
     
 
