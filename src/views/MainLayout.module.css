@@ -1,17 +1,26 @@
 .main_content {
-    position: relative;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+
 }
 
 .children {
+    width: 80%;
+    margin: 0px auto;
     margin-top: 73px;
 }
+
 
 .fixed_nav_div {
     position: fixed;
     top: 0px;
-    left: 0px;
+    left: 50%;
+    transform: translate(-50%, 0%);
     z-index: 10;
-
+    margin: 0px auto;
+    width: 100%;
+    max-width: 800px;
 }
 
 .navigation_div {
@@ -21,8 +30,7 @@
     flex-direction: row;
     align-items: center;
     width: 80%;
-    max-width: 800px;
-    margin: 0 auto;
+    margin: 0px auto;
     position: relative;
 }
 
@@ -32,8 +40,6 @@
     flex-direction: column;
     width: 80%;
     margin: 0 auto;
-
-
 }
 
 .navigation_div_responsive .icon{
@@ -219,4 +225,24 @@
     }
 
     
+}
+
+@media screen and (max-width: 450px) {
+    .children {
+        width: 100%;
+        margin: 0px auto;
+        margin-top: 73px;
+    }
+    
+    
+    .navigation_div {
+        background-color: #333;
+        overflow: hidden;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        width: 100%;
+        margin: 0px auto;
+        position: relative;
+    }
 }
