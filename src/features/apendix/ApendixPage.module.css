@@ -38,3 +38,8 @@
 .post p {
     text-align: left;
 }
+
+.sticky {
+    position: fixed;
+    top: 20vh;
+}
