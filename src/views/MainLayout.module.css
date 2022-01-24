@@ -2,13 +2,13 @@
     width: 100%;
     max-width: 800px;
     margin: 0 auto;
-
 }
 
 .children {
     width: 80%;
     margin: 0px auto;
-    margin-top: 73px;
+    margin-top: 10vh;
+    
 }
 
 

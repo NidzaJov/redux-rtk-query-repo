@@ -25,7 +25,7 @@ export const ApendixPage = () => {
         console.log(window.scrollY);
         console.log(stickyDiv.current.offsetTop)
         console.log('parent:',stickyDiv.current.offsetParent)
-         if (window.scrollY >= stickyDiv.current.offsetTop) {
+         if (window.scrollY >= stickyDiv.current.offsetTop * 0.6) {
             stickyDiv.current.className = cx({ 
                 [styles.sticky_posts_header_container]: true,
                 [styles.posts_header_container]: false
