@@ -8,6 +8,32 @@ export const ApendixPage = () => {
     const { data, isFetching } = useGetUsersQuery();
     const userSelection = useRef();
     const [selectedUserId, setSelectedUserId] = useState();
+    const stickyDiv = useRef();
+
+    useEffect(() => {
+        const onScroll = () => {
+            console.log('Scroling');
+            console.log(stickyDiv.current);
+            console.log(stickyDiv.current.className)
+            console.log(window.scrollY);
+            console.log(stickyDiv.current.offsetTop)
+            console.log('parent:',stickyDiv.current.offsetParent)
+             if (window.scrollY >= stickyDiv.current.offsetTop * 0.6) {
+                stickyDiv.current.className = cx({ 
+                    [styles.sticky_posts_header_container]: true,
+                    [styles.posts_header_container]: false
+                })    
+            } else {
+                stickyDiv.current.className = cx({
+                    [styles.sticky_posts_header_container]: false,
+                    [styles.posts_header_container]: true
+                })
+            }
+            console.log(stickyDiv.className)
+        }
+        window.addEventListener('scroll', onScroll);
+        return () => window.removeEventListener('scroll', onScroll);
+    }, [stickyDiv.current]);
     
     useEffect(() => {
         if (!isFetching) {
@@ -17,27 +43,7 @@ export const ApendixPage = () => {
     },[isFetching])
 
     let cx = classnames.bind(styles);
-    const stickyDiv = useRef();
-    document.body.onscroll = () => {
-        console.log('Scroling');
-        console.log(stickyDiv.current);
-        console.log(stickyDiv.current.className)
-        console.log(window.scrollY);
-        console.log(stickyDiv.current.offsetTop)
-        console.log('parent:',stickyDiv.current.offsetParent)
-         if (window.scrollY >= stickyDiv.current.offsetTop * 0.6) {
-            stickyDiv.current.className = cx({ 
-                [styles.sticky_posts_header_container]: true,
-                [styles.posts_header_container]: false
-            })    
-        } else {
-            stickyDiv.current.className = cx({
-                [styles.sticky_posts_header_container]: false,
-                [styles.posts_header_container]: true
-            })
-        }
-        console.log(stickyDiv.className)
-    }
+   
 
     return (
         <div className={styles.apendix_div}>
