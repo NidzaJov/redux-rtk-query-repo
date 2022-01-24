@@ -39,7 +39,22 @@
     text-align: left;
 }
 
-.sticky {
+.posts_header_container{
+    width: 125%;
+    margin-bottom: 3vh;
+    padding-top: 3vh;
+}
+
+.sticky_posts_header_container {
+    width: 100%;
+    max-width: 800px;
     position: fixed;
-    top: 20vh;
+    top: 10vh;
+    margin-bottom: 3vh;
+}
+
+.posts_header {
+    width: 80%;
+    background-color: #ddd;
+    margin: 0 auto;
 }

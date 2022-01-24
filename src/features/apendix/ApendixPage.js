@@ -24,11 +24,17 @@ export const ApendixPage = () => {
         console.log(stickyDiv.current.className)
         console.log(window.scrollY);
         console.log(stickyDiv.current.offsetTop)
-        console.log(stickyDiv.current.offsetParent)
+        console.log('parent:',stickyDiv.current.offsetParent)
          if (window.scrollY >= stickyDiv.current.offsetTop) {
-            stickyDiv.current.className = cx({ [styles.sticky]: true})    
+            stickyDiv.current.className = cx({ 
+                [styles.sticky_posts_header_container]: true,
+                [styles.posts_header_container]: false
+            })    
         } else {
-            stickyDiv.current.className = cx({[styles.sticky]: false})
+            stickyDiv.current.className = cx({
+                [styles.sticky_posts_header_container]: false,
+                [styles.posts_header_container]: true
+            })
         }
         console.log(stickyDiv.className)
     }
@@ -38,16 +44,19 @@ export const ApendixPage = () => {
             <h2>User</h2>
             {isFetching ? <div>Users fetching...</div> :
             <div className={styles.user_div} >
-                <div ref={stickyDiv}>
-                    <label htmlFor="users">Select user:</label>
-                    <select className={styles.user_select} 
-                        ref={userSelection}
-                        name="users" 
-                        id="users" 
-                        onChange={() => setSelectedUserId(userSelection.current.value)} >
-                        {data.ids.map(id => <option key={id} value={id}>{data.entities[id].name}</option>)}
-                    </select>
-                    <h3>Posts:</h3>
+                <div ref={stickyDiv} className={styles.posts_header_container}>
+                    <div className={styles.posts_header}>
+                        <label htmlFor="users">Select user:</label>
+                        <select className={styles.user_select} 
+                            ref={userSelection}
+                            name="users" 
+                            id="users" 
+                            onChange={() => setSelectedUserId(userSelection.current.value)} >
+                            {data.ids.map(id => <option key={id} value={id}>{data.entities[id].name}</option>)}
+                        </select>
+                        <h3>Posts:</h3>
+                    </div>
+                    
                 </div>
                 
                 {

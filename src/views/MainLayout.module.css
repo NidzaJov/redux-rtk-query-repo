@@ -21,7 +21,7 @@
     margin: 0px auto;
     width: 100%;
     max-width: 800px;
-    height: 20vh;
+    height: 10vh;
 }
 
 .navigation_div {
@@ -33,6 +33,8 @@
     width: 80%;
     margin: 0px auto;
     position: relative;
+    height: 100%;
+
 }
 
 .navigation_div_responsive {
