@@ -1,0 +1,30 @@
+.dropable_address_span {
+    position: relative;
+    
+}
+
+.dropable_address_span:hover {
+    background-color: #3e8e41;
+}
+
+.dropable_address_span:hover .dropdown_address_content {
+    display: block;
+}
+
+.dropdown_address_content {
+    position: absolute;
+    display: none;
+    background-color: #f1f1f1;
+    width: fit-content;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    right: 0;
+    top: 0;
+    transform: translate(100%, 0)
+}
+
+#map {
+    height: 40vh;
+    width: 40vw;
+    position: relative;
+}
+
