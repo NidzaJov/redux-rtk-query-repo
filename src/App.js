@@ -8,7 +8,9 @@ import {
 
 import './App.css';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faSearch, faUsers, faPaperclip, faPhotoVideo, faBezierCurve, faClipboardCheck, faCaretDown } from '@fortawesome/free-solid-svg-icons';
+import { faSearch, faUsers, faPaperclip, faPhotoVideo,
+   faBezierCurve, faClipboardCheck, faCaretDown } from '@fortawesome/free-solid-svg-icons';
+import { faFacebook, faTwitter, faGoogle, faLinkedin, faYoutube} from '@fortawesome/free-brands-svg-icons'
 
 import { UsersList } from './features/users/UsersList';
 import { SingleUserPage } from './features/users/SingleUserPage'
@@ -22,7 +24,8 @@ import { ApendixPage } from './features/apendix/ApendixPage'
 import { CommentsForPostPage } from './features/comments/CommentsForPostPage';
 import { MainLayout } from '../src/views/MainLayout';
 
-library.add(faSearch, faUsers, faPaperclip, faPhotoVideo, faBezierCurve, faClipboardCheck, faCaretDown);
+library.add(faSearch, faUsers, faPaperclip, faPhotoVideo, faBezierCurve, faClipboardCheck, faCaretDown,
+  faFacebook, faTwitter, faGoogle, faLinkedin, faYoutube);
 
 function App() {
   return (
