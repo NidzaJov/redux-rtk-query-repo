@@ -9,6 +9,7 @@ export const ApendixPage = () => {
     const userSelection = useRef();
     const [selectedUserId, setSelectedUserId] = useState();
     const stickyDiv = useRef();
+    let cx = classnames.bind(styles);
 
     useEffect(() => {
         const onScroll = () => {
@@ -33,7 +34,7 @@ export const ApendixPage = () => {
         }
         window.addEventListener('scroll', onScroll);
         return () => window.removeEventListener('scroll', onScroll);
-    }, [stickyDiv.current]);
+    }, [stickyDiv, cx]);
     
     useEffect(() => {
         if (!isFetching) {
@@ -42,7 +43,7 @@ export const ApendixPage = () => {
         }
     },[isFetching])
 
-    let cx = classnames.bind(styles);
+   
    
 
     return (
@@ -52,7 +53,7 @@ export const ApendixPage = () => {
             <div className={styles.user_div} >
                 <div ref={stickyDiv} className={styles.posts_header_container}>
                     <div className={styles.posts_header}>
-                        <label htmlFor="users">Select user:</label>
+                        <label htmlFor="users">Select user: </label>
                         <select className={styles.user_select} 
                             ref={userSelection}
                             name="users" 

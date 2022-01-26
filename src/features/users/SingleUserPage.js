@@ -40,7 +40,7 @@ export const SingleUserPage = () => {
     })
 
     const postsTitles = postsForUser.map((post) => (
-        <li key={post.id} className="todo-li">{post.title}</li>
+        <li key={post.id} className={styles.todo_li}>{post.title}</li>
     ))
 
     const [map, setMap] = useState()
@@ -51,10 +51,10 @@ export const SingleUserPage = () => {
     }
 
     const content = (
-            <article className='user-article'>
+            <article className={styles.user_article}>
                 <h2>{user.name}</h2>
                 <div>
-                    <div className="user-data-div">
+                    <div className={styles.user_data_div}>
                         <span>E-mail: {user.email}</span>
                         <span className={styles.dropable_address_span} onMouseEnter={OnMouseEnterHandle}>
                             Adress: {user.address.street} {user.address.suite}, {user.address.city}
@@ -94,10 +94,10 @@ export const SingleUserPage = () => {
         
     const UserAlbumsList = ( {albums} ) => {
         return (
-            <div className="user-albums-div">
+            <div className={styles.user_albums_div}>
                 <h3>Albums</h3>
-                {albums.ids.map((id) => <div key={id} className="album-item-div"><span>{albums.entities[id].title}</span>
-                 <Link to={`/albums/${id}`}><FontAwesomeIcon icon={faImages} className='album-icon'/></Link>
+                {albums.ids.map((id) => <div key={id} className={styles.album_item_div}><span>{albums.entities[id].title}</span>
+                 <Link to={`/albums/${id}`}><FontAwesomeIcon icon={faImages} className={styles.album_icon}/></Link>
                 </div>)}
             </div>
         )
@@ -108,8 +108,8 @@ export const SingleUserPage = () => {
     return (
         <section className="user-page-section">
             {content}
-            <div className="user-page-contents">
-            <ul className='user-todos-list'>
+            <div className={styles.user_page_contents}>
+            <ul className={styles.user_todos_list}>
                 <h3>Todos</h3>
                 {postsTitles}
                 </ul>
