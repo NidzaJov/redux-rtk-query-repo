@@ -1,3 +1,7 @@
+.user_page_section {
+
+}
+
 .dropable_address_span {
     position: relative;
     
@@ -97,25 +101,80 @@
     flex-basis: 50%;
     margin: 0.5rem 0.5rem 0.5rem 0.25rem;
   }
+
+  .caret_down {
+    display: none;
+   }
+
+   .album_item_div {
+    padding: 0.25rem;
+   }
   
-  .album_item_div {
-    background-color: #eb6092;
+  .album_item_content {
     border-radius: 4px;
-    margin-top: 1rem;
     width: 90%;
     padding: 0.5rem 1rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background-color: #eb6092;
   }
+
   
   @media screen and (max-width: 600px) {
     .user_page_contents {
-      flex-direction: column;
+      flex-direction: column-reverse;
     }
   
     .user_albums_div {
       margin: 0.5rem 0.5rem 0.5rem 0.5rem;
+      position: relative;
+      height: 3vh;
+      flex-grow: initial;
+      flex-basis: initial;
+    }
+
+    .albums_h3 {
+        margin: 0 auto;
+    }
+
+    .caret_down {
+        display: initial;
+    }
+
+    .album_items {
+        display: none;
+    }
+
+    .user_albums_div:hover > .album_items {
+        display: flex;
+        flex-wrap: wrap;
+        position: absolute;
+        bottom: 0;
+        transform: translate(0, 99%);
+        background-color: #4ab6d9;
+        justify-content: flex-start;
+        height: 50vh;
+    }
+
+
+    .user_albums_div:hover > .album_items .album_item_div {
+        width: 33.33%;
+        height: 25%;
+        display: flex;
+        padding: 0.5rem;
+        box-sizing: border-box;
+    }
+
+    .user_albums_div:hover .album_item_content {
+        display: flex;
+        overflow: hidden;
+    }
+
+    .user_albums_div:hover .album_item_content > div {
+        width: 70%;
+        height: 100%;
+        overflow: hidden;
     }
   
     .user_todos_list {

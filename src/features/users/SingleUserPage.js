@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 import { createSelector } from '@reduxjs/toolkit';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faImages } from '@fortawesome/free-solid-svg-icons';
+import { faCaretDown, faImages } from '@fortawesome/free-solid-svg-icons';
 import styles from './SingleUserPage.module.css';
 import { MapContainer, Marker, TileLayer, Popup } from 'react-leaflet';
 
@@ -95,10 +95,19 @@ export const SingleUserPage = () => {
     const UserAlbumsList = ( {albums} ) => {
         return (
             <div className={styles.user_albums_div}>
-                <h3>Albums</h3>
-                {albums.ids.map((id) => <div key={id} className={styles.album_item_div}><span>{albums.entities[id].title}</span>
-                 <Link to={`/albums/${id}`}><FontAwesomeIcon icon={faImages} className={styles.album_icon}/></Link>
-                </div>)}
+                <h3 className={styles.albums_h3}>Albums <FontAwesomeIcon icon={faCaretDown} className={styles.caret_down}/></h3>
+                <div className={styles.album_items}>
+                    {albums.ids.map((id) => <div key={id} className={styles.album_item_div}>
+                        <div className={styles.album_item_content}>
+                            <div>
+                                <span>{albums.entities[id].title}</span>
+                            </div>
+                            <Link to={`/albums/${id}`}><FontAwesomeIcon icon={faImages} className={styles.album_icon}/></Link>
+                        </div>
+                        </div>)}     
+                    
+                </div>
+                
             </div>
         )
     }
@@ -106,15 +115,15 @@ export const SingleUserPage = () => {
     const { data: albumsData, isFetching } = useGetAlbumsQuery(userId);
     
     return (
-        <section className="user-page-section">
+        <section className={styles.user_page_section}>
             {content}
             <div className={styles.user_page_contents}>
-            <ul className={styles.user_todos_list}>
-                <h3>Todos</h3>
-                {postsTitles}
+                <ul className={styles.user_todos_list}>
+                    <h3>Todos</h3>
+                    {postsTitles}
                 </ul>
-            {isFetching ? <div>Albums loading ...</div>
-            : <UserAlbumsList albums={albumsData}></UserAlbumsList>}
+                {isFetching ? <div>Albums loading ...</div>
+                : <UserAlbumsList albums={albumsData}></UserAlbumsList>}
             </div>
         </section>
     )
