@@ -22,6 +22,7 @@
   background-color: #F5FFFA;
   transition: 0.5s;
   position: relative;
+  min-height: 85vh;
 }
 
 .closebtn {
