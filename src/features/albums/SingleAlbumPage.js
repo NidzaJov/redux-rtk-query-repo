@@ -103,6 +103,7 @@ export const Modal = forwardRef(({ photoId, photos}, ref) => {
             >&times;</span>
             <div className={styles.modal_content}>
                 <div className={styles.slide}>
+                    <div className={styles.numbertext}>{photos.ids.indexOf(chosenPhotoId) + 1 +"/"+ photos.ids.length}</div>
                     <img src={photos.entities[chosenPhotoId].url} alt='bigimage' style={{ width:"600px"}}></img>
                 </div>
                 <button className={styles.prev} onClick={() => goToPreviousPhoto(chosenPhotoId)}>&#10094;</button>

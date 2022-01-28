@@ -110,6 +110,23 @@ body {
     max-width: 1200px;
 }
 
+.numbertext {
+    font-size: 12px;
+    padding: 8px 12px;
+    position: absolute;
+    top: 0;
+    background: rgb(0, 0, 0);
+    background: rgba(0, 0, 0, 0.5);
+    color: #f1f1f1;
+    transition: .5s ease;
+    opacity: 0;
+
+}
+
+.slide:hover .numbertext {
+    opacity: 1;
+}
+
 .close_button {
     color: white;
     position: absolute;
@@ -151,7 +168,7 @@ body {
     border-radius: 3px 0 0 3px
 }
 
-p.rev:hover, .next:hover {
+.prev:hover, .next:hover {
     background-color: rgba(0, 0, 0, 0.8)
 }
 
