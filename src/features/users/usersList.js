@@ -28,7 +28,8 @@ export const UsersList = () => {
     } = useGetUsersQuery();
     */
 
-    const users = useSelector((state) => selectAllUsers(state))
+    const users = useSelector((state) => selectAllUsers(state));
+    console.log(users);
 
     const sortedUsers = useMemo(() => {
         const sortedUsers = users.slice();

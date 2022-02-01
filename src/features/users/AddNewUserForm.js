@@ -108,10 +108,7 @@ export const AddNewUserForm = ({ displayed, setDisplayed, setRightSided }) => {
                     <button type="button" onClick={onSaveUserClicked} disabled={!canSave}>Save user</button>
                 </div>
             </form>
-            
         </section>
-        
-        
     )
 }
 

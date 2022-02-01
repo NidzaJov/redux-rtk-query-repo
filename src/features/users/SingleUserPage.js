@@ -6,6 +6,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretDown, faImages } from '@fortawesome/free-solid-svg-icons';
 import styles from './SingleUserPage.module.css';
 import { MapContainer, Marker, TileLayer, Popup } from 'react-leaflet';
+import CircularProgress from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
+import Snackbar from '@mui/material/Snackbar';
 
 
 import { selectUserById } from '../api/apiSlice';
@@ -112,7 +115,23 @@ export const SingleUserPage = () => {
         )
     }
     
-    const { data: albumsData, isFetching } = useGetAlbumsQuery(userId);
+    const { data: albumsData, isFetching, isSuccess, isError, error } = useGetAlbumsQuery(userId);
+
+    let albumsContent;
+
+    if (isFetching) {
+        albumsContent = <div>
+                        <Box sx={{ display: "flex"}}>
+                            <CircularProgress />
+                        </Box>
+                    </div>
+    } else if (isSuccess) {
+        albumsContent = <UserAlbumsList albums={albumsData}></UserAlbumsList>
+    } else if (isError) {
+        albumsContent = <div>
+                <Snackbar message={error.toString()} />
+            </div>
+    }
     
     return (
         <section className={styles.user_page_section}>
@@ -122,8 +141,7 @@ export const SingleUserPage = () => {
                     <h3>Todos</h3>
                     {postsTitles}
                 </ul>
-                {isFetching ? <div>Albums loading ...</div>
-                : <UserAlbumsList albums={albumsData}></UserAlbumsList>}
+                {albumsContent}
             </div>
         </section>
     )

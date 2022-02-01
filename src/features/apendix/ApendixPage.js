@@ -1,11 +1,12 @@
 import { useEffect, useRef, useState } from "react";
 import { useGetUsersQuery } from "../api/apiSlice";
 import { UserPosts } from "./UserPosts";
+import { CircularProgress, Box, Snackbar } from "@mui/material";
 import classnames from "classnames/bind";
 import styles from "./ApendixPage.module.css";
 
 export const ApendixPage = () => {
-    const { data, isFetching } = useGetUsersQuery();
+    const { data, isFetching, isSuccess, isError, error } = useGetUsersQuery();
     const userSelection = useRef();
     const [selectedUserId, setSelectedUserId] = useState();
     const stickyDiv = useRef();
@@ -43,35 +44,39 @@ export const ApendixPage = () => {
         }
     },[isFetching])
 
-   
-   
-
-    return (
-        <div className={styles.apendix_div}>
-            <h2>User</h2>
-            {isFetching ? <div>Users fetching...</div> :
-            <div className={styles.user_div} >
-                <div ref={stickyDiv} className={styles.posts_header_container}>
-                    <div className={styles.posts_header}>
-                        <label htmlFor="users">Select user: </label>
-                        <select className={styles.user_select} 
-                            ref={userSelection}
-                            name="users" 
-                            id="users" 
-                            onChange={() => setSelectedUserId(userSelection.current.value)} >
-                            {data.ids.map(id => <option key={id} value={id}>{data.entities[id].name}</option>)}
-                        </select>
-                        <h3>Posts:</h3>
-                    </div>
-                    
-                </div>
-                
-                {
-                    selectedUserId? < UserPosts userId={selectedUserId}/> : <div>Posts loading...</div>
-                }
-                
-            </div>
-            }
+    if (isFetching) {
+        return <div>
+            <Box sx={{ display: "flex"}}>
+                <CircularProgress />
+            </Box>
         </div>
-    )
+    } else if (isSuccess) {
+        return (<div className={styles.user_div} >
+                    <div ref={stickyDiv} className={styles.posts_header_container}>
+                        <div className={styles.posts_header}>
+                            <label htmlFor="users">Select user: </label>
+                            <select className={styles.user_select} 
+                                ref={userSelection}
+                                name="users" 
+                                id="users" 
+                                onChange={() => setSelectedUserId(userSelection.current.value)} >
+                                {data.ids.map(id => <option key={id} value={id}>{data.entities[id].name}</option>)}
+                            </select>
+                            <h3>Posts:</h3>
+                        </div>
+                    </div>
+                    {
+                        selectedUserId? < UserPosts userId={selectedUserId}/> 
+                        : <div>
+                            <Box sx={{ display: "flex"}}>
+                                <CircularProgress />
+                            </Box>
+                        </div>
+                    }
+                </div>)
+    } else if (isError) {
+        return <div>
+                <Snackbar messsage={error.toString()} />
+            </div>
+    }
 }

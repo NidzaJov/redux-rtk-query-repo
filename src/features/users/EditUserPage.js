@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { CircularProgress, Box, Snackbar } from '@mui/material';
 import styles from "./EditUserPage.module.css";
 
 import { useGetUserQuery, useEditUserMutation } from '../api/apiSlice';
@@ -9,7 +10,7 @@ export const EditUserPage = () => {
     const { userId } = useParams();
     const navigate = useNavigate();  
 
-    const { data, isFetching } = useGetUserQuery(userId);
+    const { data, isFetching, isSuccess, isError, error } = useGetUserQuery(userId);
 
     const EditUserForm = ({ user }) => {
         const [ name, setName ] = useState(user.name?? '');
@@ -25,7 +26,7 @@ export const EditUserPage = () => {
         const [catchPhrase, setCatchPhrase] = useState(user.company.catchPhrase?? '');
         const [bs, setBs] = useState(user.company.bs?? '');            
 
-        const [ updateUser, { isLoading: isItLoading }] = useEditUserMutation();
+        const [ updateUser, { isLoading: isItLoading, }] = useEditUserMutation();
         const onSaveUserClicked = async () => {
             if (name && userName && email) {
                 await updateUser({
@@ -109,11 +110,18 @@ export const EditUserPage = () => {
     }
         
     if (isFetching) {
-        return <div>Loading...</div>
-    }
-    else {
+        return <div>
+            <Box sx={{ display: "flex"}}>
+                        <CircularProgress />
+                    </Box>
+        </div>
+    } else if (isSuccess) {
         const userToEdit = data.entities[userId];
         return <EditUserForm user={userToEdit}></EditUserForm>
+    } else if (isError) {
+        <div>
+            <Snackbar message={error.toString()} />
+        </div>
     }
    
 }

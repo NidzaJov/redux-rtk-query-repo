@@ -4,12 +4,13 @@ import { useGetPhotoQuery } from '../api/apiSlice';
 import Canvas from './Canvas';
 import ImageCanvas from './ImageCanvas';
 import { ImageSlider } from './ImageSlider';
+import { CircularProgress, Box, Snackbar } from '@mui/material';
 
 import  styles  from './SinglePicturePage.module.css'
 
 export const SinglePicturePage = () => {
     const { pictureId } = useParams();
-    const {data, isFetching } = useGetPhotoQuery(pictureId);
+    const {data, isFetching, isSuccess, isError, error } = useGetPhotoQuery(pictureId);
     const [photosIds, setPhotosIds] = useState([]);
 
     const draw = context => {
@@ -88,10 +89,16 @@ export const SinglePicturePage = () => {
             }
         }
     }
- 
-    return (
-        isFetching? <div>Image loading...</div>
-        : <div className={styles.image_container}>
+
+    if (isFetching) {
+        return <div>
+                <Box sx={{ display: "flex"}}>
+                    <CircularProgress />
+                </Box>
+            </div>
+    } else if (isSuccess) {
+        return (
+            <div className={styles.image_container}>
             <div className={styles.numbertext}>{photosIds.indexOf(Number(pictureId)) + 1}/{photosIds.length}</div>
             <img src={data.entities[pictureId].url} alt="solo-entity" className={styles.picture}></img>
             <Link className={styles.prev} to={`/photos/${getPreviousId(pictureId)}`}>&#10094;</Link>
@@ -107,7 +114,10 @@ export const SinglePicturePage = () => {
                 <ImageCanvas draw={draw3} height={426} width={640} />
             </div>
           </div>
-
-    )
-
+        )
+    } else if (isError) {
+        return <div>
+            <Snackbar message={error.toString() } />
+        </div>
+    }
 }

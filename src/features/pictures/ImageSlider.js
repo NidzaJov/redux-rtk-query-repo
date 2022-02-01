@@ -1,10 +1,11 @@
 import { useEffect } from "react";
 import { useGetPhotosQuery } from "../api/apiSlice";
+import { CircularProgress, Box, Snackbar } from "@mui/material";
 
 import styles from './ImageSlider.module.css';
 
 export const ImageSlider = ( {albumId, pictureId, passPhotosIds } ) => {
-    const { data, isFetching } = useGetPhotosQuery(albumId)
+    const { data, isFetching, isSuccess, isError, error } = useGetPhotosQuery(albumId)
 
     useEffect(() => {
         isFetching? passPhotosIds([])
@@ -23,17 +24,31 @@ export const ImageSlider = ( {albumId, pictureId, passPhotosIds } ) => {
         }
     } 
 
-    return (
-        isFetching ? <div>Slider is loading...</div>
-        : <div className={styles.slider}>
-            {sliderFilter(pictureId, data.ids).map((id, idx) => 
-            idx === 1 ?
-            <div key={id} className={styles.picture_container}>
-                <img src={data.entities[id.toString()].url} alt="edc" className={styles.picture + ' ' + styles.active}></img>
-            </div> 
-            :<div key={id} className={styles.picture_container}>
-            <img src={data.entities[id.toString()].url} alt="edc" className={styles.picture}></img>
-        </div>)}       
+    if (isFetching) {
+        return <div><Box sx={{ display: "flex"}}>
+                        <CircularProgress />
+                    </Box>
+                </div>
+    } else if (isSuccess) {
+        return (
+            <div className={styles.slider}>
+                {sliderFilter(pictureId, data.ids).map((id, idx) => 
+                idx === 1 ?
+                <div key={id} className={styles.picture_container}>
+                    <img src={data.entities[id.toString()].url} alt="edc" className={styles.picture + ' ' + styles.active}></img>
+                </div> 
+                :<div key={id} className={styles.picture_container}>
+                <img src={data.entities[id.toString()].url} alt="edc" className={styles.picture}></img>
+            </div>)}       
+            </div>
+        )
+    } else if (isError) {
+        return <div>
+            <Snackbar message={error.toString()} />
         </div>
-    )
+    }
+
+
+
+    
 }

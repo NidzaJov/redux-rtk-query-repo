@@ -24,8 +24,6 @@ const Comments = ({ postId }) => {
     console.log(useSelector(commentsSelectors.selectTotal))
     const totalComments = useSelector(commentsSelectors.selectTotal);
     
-     
-
     return (
             <div>
                 <Link to={`/posts/${postId}/comments`}>Comments({totalComments})</Link>
@@ -44,16 +42,17 @@ export const UserPosts = ( { userId } ) => {
             }, [])
         }),
     })
-
     
 
     return (
         <div className={styles.posts}>
-            {postsOfUser.map(post => <div className={styles.post} key={post.id}>
-                <h4>{post.title}</h4>
-                <p>{post.body}</p>
-                <Comments postId={post.id}/>
-            </div>)}
+            {
+                postsOfUser.map(post => <div className={styles.post} key={post.id}>
+                    <h4>{post.title}</h4>
+                    <p>{post.body}</p>
+                    <Comments postId={post.id}/>
+                </div>)
+            }
         </div>
     )
 }

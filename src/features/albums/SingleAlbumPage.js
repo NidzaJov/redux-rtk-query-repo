@@ -1,7 +1,8 @@
 import { useState, useRef, forwardRef, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { useGetPhotosQuery } from "../api/apiSlice";
-import  classNames  from 'classnames/bind'
+import { CircularProgress, Box } from "@mui/material";
+import  classNames  from 'classnames/bind';
 
 import  styles  from "./SingleAlbumPage.module.css";
 
@@ -21,7 +22,11 @@ export const SingleAlbumPage = () => {
     }
 
     return (
-        isFetching?  <div>Pictures loading...</div>
+        isFetching?  <div>
+            <Box sx={{ display: "flex"}}>
+                <CircularProgress />
+            </Box>
+        </div>
         :<div className={styles.album_page}>
             <div className={styles.social_bar}>
                 <a href='#' className={styles.facebook}><FontAwesomeIcon icon={faFacebook}></FontAwesomeIcon></a>
@@ -104,7 +109,7 @@ export const Modal = forwardRef(({ photoId, photos}, ref) => {
             <div className={styles.modal_content}>
                 <div className={styles.slide}>
                     <div className={styles.numbertext}>{photos.ids.indexOf(chosenPhotoId) + 1 +"/"+ photos.ids.length}</div>
-                    <img src={photos.entities[chosenPhotoId].url} alt='bigimage' style={{ width:"600px"}}></img>
+                    <img src={photos.entities[chosenPhotoId].url} alt='bigimage' style={{ maxWidth:"600px", height: "auto"}}></img>
                 </div>
                 <button className={styles.prev} onClick={() => goToPreviousPhoto(chosenPhotoId)}>&#10094;</button>
                 <button className={styles.next}onClick={() => goToNextPhoto(chosenPhotoId)}>&#10095;</button>
