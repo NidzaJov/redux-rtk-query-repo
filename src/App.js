@@ -12,9 +12,9 @@ import { faSearch, faUsers, faPaperclip, faPhotoVideo,
    faBezierCurve, faClipboardCheck, faCaretDown } from '@fortawesome/free-solid-svg-icons';
 import { faFacebook, faTwitter, faGoogle, faLinkedin, faYoutube} from '@fortawesome/free-brands-svg-icons'
 
-import { UsersList } from './features/users/UsersList';
-import { SingleUserPage } from './features/users/SingleUserPage'
-import { EditUserPage } from './features/users/EditUserPage';
+import { UsersList } from './features/users/views/UsersList';
+import { SingleUserPage } from './features/users/views/SingleUserPage'
+import { EditUserPage } from './features/users/views/EditUserPage';
 import { TodosList } from './features/todos/TodosList';
 import { SingleAlbumPage } from './features/albums/SingleAlbumPage';
 import { SinglePicturePage } from './features/pictures/SinglePicturePage';

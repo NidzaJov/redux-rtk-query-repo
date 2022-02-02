@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { CircularProgress, Box, Snackbar } from '@mui/material';
 import styles from "./EditUserPage.module.css";
 
-import { useGetUserQuery, useEditUserMutation } from '../api/apiSlice';
+import { useGetUserQuery, useEditUserMutation } from '../../api/apiSlice';
 
 
 export const EditUserPage = () => {

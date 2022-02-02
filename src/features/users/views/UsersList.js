@@ -1,19 +1,9 @@
 import { useMemo, useState, useRef } from 'react';
-import { Link } from 'react-router-dom';
-import { selectAllUsers } from '../api/apiSlice';
-import { AddNewUserForm } from './AddNewUserForm';
-import classnames from 'classnames';
+import { selectAllUsers } from '../../api/apiSlice';
+import { AddNewUserForm } from '../components/AddNewUserForm';
 import { useSelector } from 'react-redux';
 import styles from './UsersList.module.css';
-
-let UserArticle = ({ user }) => {
-    return(
-        <article className={styles.userslist_article}> 
-            <span>{user.name}</span>
-            <Link to={`/users/${user.id}`}>View user</Link>
-        </article>
-    )
-}
+import { UsersListContent } from '../components/UsersListContent';
 
 export const UsersList = () => {
     /*
@@ -38,12 +28,6 @@ export const UsersList = () => {
     }, [users])
     
 
-    let content;
-
-    const renderedUsers = sortedUsers.map(user => <UserArticle key={user.id} user={user} ></UserArticle>)
-    const containerClassname = classnames(styles.users_container)
-    content = <div className={containerClassname}>{renderedUsers}</div>
-
     const [displayed, setDisplayed] = useState(false);
     const [rightSided, setRightSided] = useState(false)
 
@@ -60,10 +44,9 @@ export const UsersList = () => {
             <section ref={usersListElement} className={rightSided? styles.users_list_right_sided : styles.users_list}>
                 <h2>Users</h2>
                 <button className={styles.add_user_button} onClick={displayAddUser}>Add new user</button>
-                {content}
+                <UsersListContent sortedUsers={sortedUsers} />
             </section>
             <AddNewUserForm displayed={displayed} setDisplayed={setDisplayed} setRightSided={setRightSided}/>
-        </div>
-        
+        </div> 
     )
 }

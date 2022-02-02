@@ -1,4 +1,4 @@
-import { useGetUsersQuery, useAddNewUserMutation } from "../api/apiSlice";
+import { useGetUsersQuery, useAddNewUserMutation } from "../../api/apiSlice";
 import { useState, useRef  } from "react";
 import styles from './AddNewUserForm.module.css';
 
