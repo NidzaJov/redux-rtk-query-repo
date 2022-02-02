@@ -87,6 +87,13 @@ body {
     font-size: 10px;
 }
 
+.image_title_div > button {
+    color: blue;
+    text-decoration: underline;
+    border: none;
+    background-color: transparent;
+}
+
 .modal {
     display: none;
     position: fixed;

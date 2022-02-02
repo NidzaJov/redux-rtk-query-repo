@@ -10,7 +10,7 @@ export const ImageSlider = ( {albumId, pictureId, passPhotosIds } ) => {
     useEffect(() => {
         isFetching? passPhotosIds([])
         : passPhotosIds(data.ids)
-    }, [data])
+    }, [data, isFetching, passPhotosIds])
 
     const sliderFilter = (id, array,) => {
         const length = array.length;

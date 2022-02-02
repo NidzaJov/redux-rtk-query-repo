@@ -29,11 +29,11 @@ export const SingleAlbumPage = () => {
         </div>
         :<div className={styles.album_page}>
             <div className={styles.social_bar}>
-                <a href='#' className={styles.facebook}><FontAwesomeIcon icon={faFacebook}></FontAwesomeIcon></a>
-                <a href='#' className={styles.twitter}><FontAwesomeIcon icon={faTwitter}></FontAwesomeIcon></a>
-                <a href='#' className={styles.google}><FontAwesomeIcon icon={faGoogle}></FontAwesomeIcon></a>
-                <a href='#' className={styles.linkedin}><FontAwesomeIcon icon={faLinkedin}></FontAwesomeIcon></a>
-                <a href='#' className={styles.youtube}><FontAwesomeIcon icon={faYoutube}></FontAwesomeIcon></a>
+                <a href='https://facebook.com/' className={styles.facebook}><FontAwesomeIcon icon={faFacebook}></FontAwesomeIcon></a>
+                <a href='https://twitter.com/' className={styles.twitter}><FontAwesomeIcon icon={faTwitter}></FontAwesomeIcon></a>
+                <a href='https://www.google.com/' className={styles.google}><FontAwesomeIcon icon={faGoogle}></FontAwesomeIcon></a>
+                <a href='https://www.linkedin.com/' className={styles.linkedin}><FontAwesomeIcon icon={faLinkedin}></FontAwesomeIcon></a>
+                <a href='https://www.youtube.com/' className={styles.youtube}><FontAwesomeIcon icon={faYoutube}></FontAwesomeIcon></a>
             </div>
             <div className={styles.images_container}>
                 {photos.ids.map(id => <div key={id} className={styles.image_container}>
@@ -43,7 +43,7 @@ export const SingleAlbumPage = () => {
                         </Link>
                     </div>
                     <div className={styles.image_title_div}>
-                    <span><a href="#" onClick={() => showModal(id)}>{photos.entities[id].title}</a></span>
+                        <button onClick={() => showModal(id)}>{photos.entities[id].title}</button>
                     </div>
             
                 </div>)}

@@ -49,7 +49,6 @@ export const SinglePicturePage = () => {
     }
 
     const draw3 = (context, image, patImage) => {
-        console.log(image)
         context.drawImage(image, 0, 0);
         const gradient = context.createLinearGradient(0, 0, 640, 0);
         gradient.addColorStop("0", "magenta");

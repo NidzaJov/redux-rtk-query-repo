@@ -16,7 +16,6 @@ export const MediaPage = () => {
     const result = useRef();
 
     useEffect(() => {
-        console.log(myAudio.current)
         myAudio.current.currentTime = 10;
         myVideo.current.currentTime = 0;
     } , [])
