@@ -1,6 +1,6 @@
 import { useRef, useEffect } from "react";
-import photo from '../../images/adelin-grigorescu-QfW03LEVtLU-unsplash.jpg';
-import rLogo from '../../images/logo192.png'
+import photo from '../../../images/adelin-grigorescu-QfW03LEVtLU-unsplash.jpg';
+import rLogo from '../../../images/logo192.png'
 
 const ImageCanvas = ( {draw, height, width} ) => {
     const canvas = useRef();

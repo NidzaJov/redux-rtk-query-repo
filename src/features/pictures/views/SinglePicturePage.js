@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { useGetPhotoQuery } from '../api/apiSlice';
-import Canvas from './Canvas';
-import ImageCanvas from './ImageCanvas';
-import { ImageSlider } from './ImageSlider';
+import { useGetPhotoQuery } from '../../api/apiSlice';
+import Canvas from '../components/Canvas';
+import ImageCanvas from '../components/ImageCanvas';
+import { ImageSlider } from '../components/ImageSlider';
 import { CircularProgress, Box, Snackbar } from '@mui/material';
 
 import  styles  from './SinglePicturePage.module.css'

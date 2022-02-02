@@ -17,8 +17,8 @@ import { SingleUserPage } from './features/users/views/SingleUserPage'
 import { EditUserPage } from './features/users/views/EditUserPage';
 import { TodosList } from './features/todos/views/TodosList';
 import { SingleAlbumPage } from './features/albums/SingleAlbumPage';
-import { SinglePicturePage } from './features/pictures/SinglePicturePage';
-import { SvgPage } from './features/pictures/SvgPage';
+import { SinglePicturePage } from './features/pictures/views/SinglePicturePage';
+import { SvgPage } from './features/pictures/views/SvgPage';
 import { MediaPage} from './features/media/MediaPage';
 import { ApendixPage } from './features/apendix/ApendixPage'
 import { CommentsForPostPage } from './features/comments/views/CommentsForPostPage';

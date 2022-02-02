@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useGetPhotosQuery } from "../api/apiSlice";
+import { useGetPhotosQuery } from "../../api/apiSlice";
 import { CircularProgress, Box, Snackbar } from "@mui/material";
 
 import styles from './ImageSlider.module.css';
