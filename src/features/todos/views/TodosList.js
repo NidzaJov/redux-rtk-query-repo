@@ -1,8 +1,8 @@
 import React, { useState, useRef } from 'react';
 import { useSelector } from 'react-redux';
-import { selectAllTodos } from './todosSlice';
+import { selectAllTodos } from '../todosSlice';
 import styles from './TodosList.module.css';
-import { LiItem } from './components/LiItem';
+import { LiItem } from '../components/LiItem';
 
 export const TodosList = () => {
     const todos = useSelector(selectAllTodos);

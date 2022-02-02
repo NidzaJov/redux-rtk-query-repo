@@ -15,13 +15,13 @@ import { faFacebook, faTwitter, faGoogle, faLinkedin, faYoutube} from '@fortawes
 import { UsersList } from './features/users/views/UsersList';
 import { SingleUserPage } from './features/users/views/SingleUserPage'
 import { EditUserPage } from './features/users/views/EditUserPage';
-import { TodosList } from './features/todos/TodosList';
+import { TodosList } from './features/todos/views/TodosList';
 import { SingleAlbumPage } from './features/albums/SingleAlbumPage';
 import { SinglePicturePage } from './features/pictures/SinglePicturePage';
 import { SvgPage } from './features/pictures/SvgPage';
 import { MediaPage} from './features/media/MediaPage';
 import { ApendixPage } from './features/apendix/ApendixPage'
-import { CommentsForPostPage } from './features/comments/CommentsForPostPage';
+import { CommentsForPostPage } from './features/comments/views/CommentsForPostPage';
 import { MainLayout } from '../src/views/MainLayout';
 
 library.add(faSearch, faUsers, faPaperclip, faPhotoVideo, faBezierCurve, faClipboardCheck, faCaretDown,

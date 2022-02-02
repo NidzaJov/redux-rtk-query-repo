@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { createContext } from 'react';
-import { useGetCommentsQuery } from '../api/apiSlice';
-import { CommentsList } from './CommentsList';
+import { useGetCommentsQuery } from '../../api/apiSlice';
+import { CommentsList } from '../components/CommentsList';
 import { CircularProgress, Box, Snackbar } from '@mui/material';
 
 export const CommentsContext = createContext();
