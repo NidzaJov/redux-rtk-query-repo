@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useCallback, useLayoutEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { selectAllTodos } from '../todosSlice';
 import styles from './TodosList.module.css';
@@ -34,8 +34,9 @@ export const TodosList = () => {
     });
 
     const scrollingElement = useRef();
-
-    const showExcessBars = () => {
+    
+    
+    const showExcessBars = useCallback(() => {
         const scrollHeight = scrollingElement.current.scrollHeight;
 
         if (scrollingElement.current.scrollTop > scrollHeight * 0.08 && scrollingElement.current.scrollTop < scrollHeight * 0.4) {
@@ -61,8 +62,11 @@ export const TodosList = () => {
                 return { ...style, display: 'block'}
             });
         }
+    }, [scrollingElement])
 
-    }
+    useLayoutEffect(() => {
+        showExcessBars()
+    }, [showExcessBars])
     
     return (
         <section>
