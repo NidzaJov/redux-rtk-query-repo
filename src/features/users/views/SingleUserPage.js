@@ -14,6 +14,7 @@ export const SingleUserPage = () => {
     const { userId } = useParams();
     //const user = useSelector(state => selectUserById(state, userId));
     const { data, isSuccess: userFetchingSuccess } = useGetUserQuery(userId);
+    console.log(useGetUserQuery(userId).data);
 
     const selectPostsForUser = useMemo(() => {
         return createSelector(

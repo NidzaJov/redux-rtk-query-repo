@@ -31,7 +31,7 @@ export const LiItem = ({ todo }) => {
     }
 
     return (
-        <div className={styles.todo_li_item}
+        <div role="listitem" className={styles.todo_li_item}
         onMouseEnter={useHoverStyle}
         onMouseLeave={useOrdinaryStyle}
         style={liStyle}>
