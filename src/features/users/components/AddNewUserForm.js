@@ -2,7 +2,6 @@ import { useGetUsersQuery, useAddNewUserMutation } from "../../api/apiSlice";
 import { useState, useRef  } from "react";
 import styles from './AddNewUserForm.module.css';
 
-
 export const AddNewUserForm = ({ displayed, setDisplayed, setRightSided }) => {
 
     const [ name, setName ] = useState('');
@@ -26,8 +25,10 @@ export const AddNewUserForm = ({ displayed, setDisplayed, setRightSided }) => {
     const onSaveUserClicked = async () => {
         if (canSave) {
             try{
-                await addNewUser({id: usersCount + 1, name, userName, email, street:'', suite:'', city:'', zipCode:'', phone:'', website:'',
-                companyName:'', catchPhrase:'', bs:''});
+                const newUserData = {id: usersCount + 1, name, userName, email, street:'',
+                 suite:'', city:'', zipCode:'', phone:'', website:'',
+                companyName:'', catchPhrase:'', bs:''}
+                await addNewUser(newUserData);
                 setName('');
                 setUserName('');
                 setEmail('');
@@ -47,10 +48,9 @@ export const AddNewUserForm = ({ displayed, setDisplayed, setRightSided }) => {
     }
 
     const addUserElement = useRef();
-    if (addUserElement.current) {
-        if (displayed) {
-            addUserElement.current.className = styles.add_user_section_visible;
-        } 
+
+    if (addUserElement.current && displayed) {
+        addUserElement.current.className = styles.add_user_section_visible;
     }
 
     const closeAddUser = () => {
@@ -59,7 +59,6 @@ export const AddNewUserForm = ({ displayed, setDisplayed, setRightSided }) => {
         setRightSided(false);
     }
     
-
     return (
         <section ref={addUserElement} className={styles.add_user_section}>
             <button onClick={closeAddUser} className={styles.closebtn}>&times;</button>
