@@ -4,6 +4,7 @@ import { AddNewUserForm } from '../components/AddNewUserForm';
 import { useSelector } from 'react-redux';
 import styles from './UsersList.module.css';
 import { UsersListContent } from '../components/UsersListContent';
+import { sortUsersByName } from '../helpers/sortUsersByName';
 
 export const UsersList = () => {
     /*
@@ -19,20 +20,13 @@ export const UsersList = () => {
     */
 
     const users = useSelector((state) => selectAllUsers(state));
-    console.log(users);
-
     const sortedUsers = useMemo(() => {
-        const sortedUsers = users.slice();
-        sortedUsers.sort((a, b) => a.name.localeCompare(b.name));
-        return sortedUsers
+        return sortUsersByName(users)
     }, [users])
-    
-
-    const [displayed, setDisplayed] = useState(false);
-    const [rightSided, setRightSided] = useState(false)
 
     const usersListElement = useRef();
-
+    const [displayed, setDisplayed] = useState(false);
+    const [rightSided, setRightSided] = useState(false)
     const displayAddUser = () => {
         usersListElement.current.className=styles.users_list_right_sided;
         setRightSided(true);
