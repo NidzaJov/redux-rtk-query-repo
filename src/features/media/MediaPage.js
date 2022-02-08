@@ -1,11 +1,19 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useContext } from 'react'
 import video from '../../videos/video_PBozovic.mp4';
 import audio from '../../audio/file_example_MP3_1MG.mp3';
 import dragImage from '../../images/pexels-shotkit-5355641.jpg';
 import WebWorker from './demo_worker';
 import WebWorkerBuilder from './WebWorkerBuilder';
+import { ActiveButtonContext } from '../../views/MainLayout';
+
 
 export const MediaPage = () => {
+
+    const setActiveButton = useContext(ActiveButtonContext);
+    useEffect(() => {
+        setActiveButton('media');
+    }, [setActiveButton])
+
     const myVideo = useRef();
     const myAudio = useRef();
     const div1 = useRef();

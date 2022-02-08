@@ -16,7 +16,6 @@ export const UserAlbumsList = ( {albums} ) => {
                         <Link to={`/albums/${id}`}><FontAwesomeIcon icon={faImages} className={styles.album_icon}/></Link>
                     </div>
                     </div>)}     
-                
             </div>
         </div>
     )

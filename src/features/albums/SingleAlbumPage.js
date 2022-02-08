@@ -1,8 +1,9 @@
-import { useState, useRef, forwardRef, useEffect } from "react";
+import { useState, useRef, forwardRef, useEffect, useContext } from "react";
 import { useParams, Link } from "react-router-dom";
 import { useGetPhotosQuery } from "../api/apiSlice";
 import { CircularProgress, Box } from "@mui/material";
 import  classNames  from 'classnames/bind';
+import { ActiveButtonContext } from "../../views/MainLayout";
 
 import  styles  from "./SingleAlbumPage.module.css";
 
@@ -10,6 +11,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebook, faTwitter, faGoogle, faLinkedin, faYoutube } from "@fortawesome/free-brands-svg-icons"
 
 export const SingleAlbumPage = () => {
+    const setActiveButton = useContext(ActiveButtonContext);
+    useEffect(() => {
+        setActiveButton('users');
+    }, [setActiveButton])
+
     const { albumId } = useParams();
 
     const { data: photos, isFetching } = useGetPhotosQuery(albumId);

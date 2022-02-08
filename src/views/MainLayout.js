@@ -1,40 +1,33 @@
 import { useNavigate } from "react-router-dom";
-import { useState, useRef } from "react";
+import React, { useState, useRef, createContext } from "react";
 import styles from './MainLayout.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 
-
+export const ActiveButtonContext = createContext();
 
 export const MainLayout = (props) => {
-
-    const [activeButton, setActiveButton] = useState('users')
-
+    const [activeButton, setActiveButton] = useState();
     const navigate = useNavigate();
 
     const goToUsers = () => {
         navigate('/users');
-        setActiveButton('users');
     }
 
     const goToApendix = () => {
         navigate('/apendix')
-        setActiveButton('apendix');
     }
 
     const goToMedia = () => {
         navigate('/media');
-        setActiveButton('media');
     }
 
     const goToSvg = () => {
         navigate('/svg');
-        setActiveButton('svg');
     }
 
     const goToTodos = () => {
         navigate('/todos');
-        setActiveButton('todos')
     }
 
     const navigationDiv = useRef()
@@ -70,7 +63,9 @@ export const MainLayout = (props) => {
             </div>
             
             <div className={styles.children}>
-                {props.children}
+                <ActiveButtonContext.Provider value={setActiveButton}>
+                    {props.children}
+                </ActiveButtonContext.Provider>   
             </div>
         </div>
         

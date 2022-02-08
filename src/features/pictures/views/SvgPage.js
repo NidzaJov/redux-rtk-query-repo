@@ -1,4 +1,12 @@
+import { useContext, useEffect } from "react";
+import { ActiveButtonContext } from "../../../views/MainLayout";
+
 export const SvgPage = () => {
+
+    const setActiveButton = useContext(ActiveButtonContext);
+    useEffect(() => {
+        setActiveButton('svg');
+    }, [setActiveButton])
 
     return (
         <div>

@@ -1,13 +1,17 @@
-import React, { useState, useRef, useCallback, useLayoutEffect } from 'react';
+import React, { useState, useRef, useCallback, useLayoutEffect, useContext, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { selectAllTodos } from '../todosSlice';
 import styles from './TodosList.module.css';
 import { LiItem } from '../components/LiItem';
+import { ActiveButtonContext } from '../../../views/MainLayout';
 
 export const TodosList = () => {
+    const setActiveButton = useContext(ActiveButtonContext);
+    useEffect(() => {
+        setActiveButton('todos');
+    }, [setActiveButton])
+    
     const todos = useSelector(selectAllTodos);
-    
-    
 
     const renderedTodos = todos.slice(0, 10).map((todo) => (
         <li key={todo.id}>

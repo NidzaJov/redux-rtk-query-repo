@@ -1,10 +1,11 @@
-import { useMemo, useState, useRef } from 'react';
+import { useMemo, useState, useRef, useContext, useEffect } from 'react';
 import { selectAllUsers } from '../../api/apiSlice';
 import { AddNewUserForm } from '../components/AddNewUserForm';
 import { useSelector } from 'react-redux';
 import styles from './UsersList.module.css';
 import { UsersListContent } from '../components/UsersListContent';
 import { sortUsersByName } from '../helpers/sortUsersByName';
+import { ActiveButtonContext } from '../../../views/MainLayout';
 
 export const UsersList = () => {
     /*
@@ -18,6 +19,11 @@ export const UsersList = () => {
         refetch
     } = useGetUsersQuery();
     */
+
+    const setActiveButton = useContext(ActiveButtonContext);
+    useEffect(() => {
+        setActiveButton('users');
+    }, [setActiveButton])
 
     const users = useSelector((state) => selectAllUsers(state));
     const sortedUsers = useMemo(() => {

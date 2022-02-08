@@ -1,14 +1,20 @@
-import { useState } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useGetPhotoQuery } from '../../api/apiSlice';
 import Canvas from '../components/Canvas';
 import ImageCanvas from '../components/ImageCanvas';
 import { ImageSlider } from '../components/ImageSlider';
 import { CircularProgress, Box, Snackbar } from '@mui/material';
+import { ActiveButtonContext } from '../../../views/MainLayout';
 
 import  styles  from './SinglePicturePage.module.css'
 
 export const SinglePicturePage = () => {
+    const setActiveButton = useContext(ActiveButtonContext);
+    useEffect(() => {
+        setActiveButton('users');
+    }, [setActiveButton])
+
     const { pictureId } = useParams();
     const {data, isFetching, isSuccess, isError, error } = useGetPhotoQuery(pictureId);
     const [photosIds, setPhotosIds] = useState([]);

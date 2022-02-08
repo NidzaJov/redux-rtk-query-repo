@@ -1,12 +1,18 @@
 import { useParams } from 'react-router-dom';
-import { createContext } from 'react';
+import { createContext, useContext, useEffect } from 'react';
 import { useGetCommentsQuery } from '../../api/apiSlice';
 import { CommentsList } from '../components/CommentsList';
 import { CircularProgress, Box, Snackbar } from '@mui/material';
+import { ActiveButtonContext } from '../../../views/MainLayout';
 
 export const CommentsContext = createContext();
 
 export const CommentsForPostPage = () => {
+    const setActiveButton = useContext(ActiveButtonContext);
+    useEffect(() => {
+        setActiveButton('apendix');
+    }, [setActiveButton])
+
     const { postId } = useParams();
     const { data, isFetching, isSuccess, isError, error } = useGetCommentsQuery(postId);
     

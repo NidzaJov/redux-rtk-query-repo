@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useMemo, useState, useContext, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { createSelector } from '@reduxjs/toolkit';
 import styles from './SingleUserPage.module.css';
@@ -7,11 +7,17 @@ import Box from '@mui/material/Box';
 import Snackbar from '@mui/material/Snackbar';
 import { UserAlbumsList } from '../components/UserAlbumsList';
 import { DropdownWithMap } from '../components/DropdownWithMap';
-import { filterPostsByUserId } from '../helpers/filterPostsByUserId'
+import { filterPostsByUserId } from '../helpers/filterPostsByUserId';
+import { ActiveButtonContext } from '../../../views/MainLayout';
 
 import { useGetUserQuery, useGetPostsQuery, useGetAlbumsQuery } from '../../api/apiSlice';
 
 export const SingleUserPage = () => {
+    const setActiveButton = useContext(ActiveButtonContext);
+    useEffect(() => {
+        setActiveButton('users');
+    }, [setActiveButton])
+
     const { userId } = useParams();
     //const user = useSelector(state => selectUserById(state, userId));
     const { data, isSuccess: userFetchingSuccess } = useGetUserQuery(userId);
