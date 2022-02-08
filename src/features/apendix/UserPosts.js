@@ -12,7 +12,6 @@ const Comments = ({ postId }) => {
         const result = dispatch(apiSlice.endpoints.getComments.initiate(postId));
         result.unsubscribe()
     }, [postId, dispatch])
-    console.log(postId);
     const selectCommentsResult = useMemo(() => apiSlice.endpoints.getComments.select(postId),
     [postId]);
     const selectCommentsData = createSelector(
@@ -20,8 +19,6 @@ const Comments = ({ postId }) => {
         (commentsResult) => commentsResult.data
     )
     const commentsSelectors = commentsAdapter.getSelectors(state => selectCommentsData(state) ?? commentsInitialState);
-
-    console.log(useSelector(commentsSelectors.selectTotal))
     const totalComments = useSelector(commentsSelectors.selectTotal);
     
     return (

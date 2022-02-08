@@ -63,8 +63,6 @@ export const MediaPage = () => {
 
     const duplicate = () => {
         localStorage.setItem("divToCopy", divToCopy.current.innerHTML);
-        console.log(inDivToCopyTo.current);
-        console.log(localStorage);
         inDivToCopyTo.current.innerHTML = (localStorage.getItem("divToCopy"));
         localStorage.clear();
     }
@@ -74,7 +72,6 @@ export const MediaPage = () => {
             sessionStorage.clickCount = Number(sessionStorage.clickCount) + 1
         }
             else sessionStorage.clickCount = 1
-        console.log(sessionStorage.clickCount);
         clickCounter.current.innerHTML = `You clicked button  ${sessionStorage.clickCount} time(s) in this sesion`
     }
 

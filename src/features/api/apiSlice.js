@@ -60,7 +60,6 @@ export const apiSlice = createApi({
             query: (postId) => `/posts/${postId}/comments`,
             keepUnusedDataFor: 3600,
             transformResponse: responseData => {
-                console.log('Response', responseData);
                 return commentsAdapter.setAll(commentsInitialState, responseData);
             }
         }),

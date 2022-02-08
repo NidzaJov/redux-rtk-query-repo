@@ -13,7 +13,6 @@ export const CommentsList = () => {
     const [count, setCount] = useState(0);
     const { clear, reset } = useTimeout(() => setCount(count => count -1 ), 1000)
     const [value, setValue] = useState(10);
-    console.log(value)
     //useDebounce(() => alert(value), 1000, [value])
     useUpdateEffect(() => {
         alert(value); 
