@@ -1,16 +1,14 @@
-import { useEffect, useRef, useState, useContext } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useGetUsersQuery } from "../api/apiSlice";
 import { UserPosts } from "./UserPosts";
 import { CircularProgress, Box, Snackbar } from "@mui/material";
 import classnames from "classnames/bind";
 import styles from "./ApendixPage.module.css";
-import { ActiveButtonContext } from "../../views/MainLayout";
+import { useActiveButtonEffect } from "../../customHooks/useActiveButtonEffect";
 
 export const ApendixPage = () => {
-    const setActiveButton = useContext(ActiveButtonContext);
-    useEffect(() => {
-        setActiveButton('apendix');
-    }, [setActiveButton])
+    useActiveButtonEffect('apendix');
+    
     const { data, isFetching, isSuccess, isError, error } = useGetUsersQuery();
     const userSelection = useRef();
     const [selectedUserId, setSelectedUserId] = useState();
