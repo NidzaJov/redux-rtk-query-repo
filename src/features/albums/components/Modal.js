@@ -1,6 +1,7 @@
 import { forwardRef, useState, useEffect } from 'react';
 import classNames from 'classnames/bind'
 import styles from '../SingleAlbumPage.module.css';
+import { returnSequenceFromArray } from '../helpers/returnSequenceFromArray';
 
 
 export const Modal = forwardRef(({ photoId, photos}, ref) => {
@@ -12,7 +13,6 @@ export const Modal = forwardRef(({ photoId, photos}, ref) => {
             setChosenPhotoId(photoId);
         }
     }, [photoId])
-    let elementIndex, sliderImagesIds;
 
     const closeModal = () => {
         ref.current.style.display = "none";
@@ -27,7 +27,6 @@ export const Modal = forwardRef(({ photoId, photos}, ref) => {
     }
 
     const goToPreviousPhoto = (photoId) => {
-        console.log('PreviousId',photoId)
         if (photoId === photos.ids[0]) {
             setChosenPhotoId(photos.ids[photos.ids.length -1])
         } else {
@@ -35,13 +34,9 @@ export const Modal = forwardRef(({ photoId, photos}, ref) => {
         }
     }
 
-    elementIndex = photos.ids.indexOf(chosenPhotoId) 
-    if (elementIndex > (photos.ids.length - 4)) {
-        sliderImagesIds = photos.ids.slice(elementIndex, photos.ids.length).concat(photos.ids.slice(0, (4 - (photos.ids.length - elementIndex))));
-    } else {
-        sliderImagesIds = photos.ids.slice(elementIndex, elementIndex + 4)
-    } 
-    
+    let elementIndex, sliderImagesIds;
+    elementIndex = photos.ids.indexOf(chosenPhotoId); 
+    sliderImagesIds = returnSequenceFromArray(elementIndex, photos.ids, 4);
 
     return (
         <div ref={ref} className={styles.modal}>

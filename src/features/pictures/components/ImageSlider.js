@@ -12,7 +12,7 @@ export const ImageSlider = ( {albumId, pictureId, passPhotosIds } ) => {
         : passPhotosIds(data.ids)
     }, [data, isFetching, passPhotosIds])
 
-    const sliderFilter = (id, array,) => {
+    const sliderFilter = (id, array) => {
         const length = array.length;
         const index = array.indexOf(Number(id));
         if (index === 0) {
@@ -47,8 +47,4 @@ export const ImageSlider = ( {albumId, pictureId, passPhotosIds } ) => {
             <Snackbar message={error.toString()} />
         </div>
     }
-
-
-
-    
 }

@@ -119,15 +119,16 @@ body {
 
 .numbertext {
     font-size: 12px;
-    padding: 8px 12px;
     position: absolute;
     top: 0;
     background: rgb(0, 0, 0);
     background: rgba(0, 0, 0, 0.5);
-    color: #f1f1f1;
+    color: red;
     transition: .5s ease;
-    opacity: 0;
-
+    width: 5rem;
+    height: 2rem;
+    line-height: 2rem;
+    text-align: center;
 }
 
 .slide:hover .numbertext {

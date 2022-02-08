@@ -71,7 +71,7 @@ export const SinglePicturePage = () => {
         context.fill();
     }
 
-
+    // get id of next picture or if current pisture is last (index is length-1), get id of first picture in that album
     const getNextId = (pictureId) => {
         if (photosIds) {
                 const index = photosIds.indexOf(Number(pictureId))
@@ -83,7 +83,7 @@ export const SinglePicturePage = () => {
         }
         
     }
-
+    // get id of previous picture or if current pisture is first (index is 0), get id of last picture in that album
     const getPreviousId = (pictureId) => {
         if (photosIds) {
             const index = photosIds.indexOf(Number(pictureId))
@@ -121,8 +121,10 @@ export const SinglePicturePage = () => {
           </div>
         )
     } else if (isError) {
-        return <div>
+        return (
+        <div>
             <Snackbar message={error.toString() } />
         </div>
+        )
     }
 }
