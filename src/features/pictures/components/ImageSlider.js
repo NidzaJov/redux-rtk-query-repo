@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import { useGetPhotosQuery } from "../../api/apiSlice";
 import { CircularProgress, Box, Snackbar } from "@mui/material";
-
 import styles from './ImageSlider.module.css';
 
 export const ImageSlider = ( {albumId, pictureId, passPhotosIds } ) => {
@@ -38,13 +37,15 @@ export const ImageSlider = ( {albumId, pictureId, passPhotosIds } ) => {
                     <img src={data.entities[id.toString()].url} alt="edc" className={styles.picture + ' ' + styles.active}></img>
                 </div> 
                 :<div key={id} className={styles.picture_container}>
-                <img src={data.entities[id.toString()].url} alt="edc" className={styles.picture}></img>
-            </div>)}       
+                    <img src={data.entities[id.toString()].url} alt="edc" className={styles.picture}></img>
+                </div>)}       
             </div>
         )
     } else if (isError) {
-        return <div>
-            <Snackbar message={error.toString()} />
-        </div>
+        return (
+            <div>
+                <Snackbar message={error.toString()} />
+            </div>
+        )
     }
 }

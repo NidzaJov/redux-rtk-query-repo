@@ -1,27 +1,21 @@
-import { useState, useRef, useEffect, useContext } from "react";
+import { useState, useRef } from "react";
 import { useParams, Link } from "react-router-dom";
 import { useGetPhotosQuery } from "../api/apiSlice";
 import { CircularProgress, Box } from "@mui/material";
 import { Modal } from './components/Modal'
-import { ActiveButtonContext } from "../../views/MainLayout";
-
+import { useActiveButtonEffect } from "../../customHooks/useActiveButtonEffect"
 import  styles  from "./SingleAlbumPage.module.css";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebook, faTwitter, faGoogle, faLinkedin, faYoutube } from "@fortawesome/free-brands-svg-icons"
 
 export const SingleAlbumPage = () => {
-    const setActiveButton = useContext(ActiveButtonContext);
-    useEffect(() => {
-        setActiveButton('users');
-    }, [setActiveButton])
+    useActiveButtonEffect('users');
 
     const { albumId } = useParams();
-
     const { data: photos, isFetching } = useGetPhotosQuery(albumId);
+    const [photoId, setPhotoId] = useState();
 
-    const [photoId, setPhotoId] = useState()
-    const modalComponent = useRef()
+    const modalComponent = useRef();
     const showModal = (id) => {
         setPhotoId(id);
         modalComponent.current.style.display = "block";

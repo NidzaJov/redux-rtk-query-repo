@@ -33,12 +33,9 @@ function App() {
       <div className="App">
         <MainLayout>
           <Routes>
-          <Route exact path="/editUser/:userId" element={<EditUserPage />}>
-            </Route>
-            <Route exact path='/users' element={<UsersList />}>
-            </Route>
-            <Route exact path="/users/:userId" element={<SingleUserPage />}>
-            </Route>
+            <Route exact path="/editUser/:userId" element={<EditUserPage />} />
+            <Route exact path='/users' element={<UsersList />} />
+            <Route exact path="/users/:userId" element={<SingleUserPage />} />
             <Route exact path="/todos" element={<TodosList />} />
             <Route exact path="/albums/:albumId" element={<SingleAlbumPage />} />
             <Route exact path="/photos/:pictureId" element={<SinglePicturePage />}/>
@@ -46,13 +43,11 @@ function App() {
             <Route exact path="/media" element={<MediaPage />} />
             <Route exact path="/apendix" element={<ApendixPage />} />
             <Route exact path="/posts/:postId/comments" element={<CommentsForPostPage />} />
-            <Route exact path="/" element={<Navigate to="/users"/>}>
-            </Route>
+            <Route exact path="/" element={<Navigate to="/users"/>} />
           </Routes>
         </MainLayout>
       </div>
     </Router>
-    
   );
 }
 

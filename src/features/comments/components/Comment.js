@@ -29,7 +29,6 @@ export const Comment = () => {
         toggleValue();
     }
 
-
     return (
         <div style={context.toggled? { backgroundColor: "red"} : {backgroundColor: "white"}}>
             <h5 className={color? styles.black_text : styles.blue_text}>{comment.name}</h5>

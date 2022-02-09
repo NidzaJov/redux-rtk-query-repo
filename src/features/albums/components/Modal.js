@@ -60,8 +60,8 @@ export const Modal = forwardRef(({ photoId, photos}, ref) => {
                     <div>
                         <img src={photos.entities[sliderImagesIds[0]].url} alt={'somepicture'} className={
                             cx({
-                                    [styles.demo]: true,
-                                    [styles.cursor]: true
+                                [styles.demo]: true,
+                                [styles.cursor]: true
                             })
                         } style={{ height:"100px", width:"100px" }} onClick={() => setChosenPhotoId(sliderImagesIds[0])}></img>
                         <img src={photos.entities[sliderImagesIds[1]].url} alt={'somepicture'} className={

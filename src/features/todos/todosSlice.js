@@ -21,12 +21,10 @@ export const { useGetTodosQuery } = extendedApiSlice
 
 export const selectTodosResult = extendedApiSlice.endpoints.getTodos.select();
 
-
 export const selectTodosData = createSelector(
     selectTodosResult,
     (todosResult) => todosResult.data
 );
-
 
 
 export const {

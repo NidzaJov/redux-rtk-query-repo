@@ -65,7 +65,6 @@ export const MainLayout = (props) => {
                     {props.children}
                 </ActiveButtonContext.Provider>   
             </div>
-        </div>
-        
+        </div> 
     )
 }

@@ -11,12 +11,7 @@ import  styles  from './SinglePicturePage.module.css'
 
 export const SinglePicturePage = () => {
     useActiveButtonEffect('users')
-    /*
-    const setActiveButton = useContext(ActiveButtonContext);
-    useEffect(() => {
-        setActiveButton('users');
-    }, [setActiveButton])
-    */
+    
     const { pictureId } = useParams();
     const {data, isFetching, isSuccess, isError, error } = useGetPhotoQuery(pictureId);
     const [photosIds, setPhotosIds] = useState([]);

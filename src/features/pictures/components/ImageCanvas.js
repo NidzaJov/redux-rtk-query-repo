@@ -23,7 +23,6 @@ const ImageCanvas = ( {draw, height, width} ) => {
             <img src={photo} alt="canvasImage" ref={image} style={{display: 'none', width: 640, height: 426}}></img>
             <img src={rLogo} alt='logoImage' ref={reactLogo} style={{display: 'none', width: 10}} />
         </>
-        
     )
 }
 

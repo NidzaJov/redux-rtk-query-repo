@@ -2,7 +2,6 @@ import { useContext, createContext, useState } from "react";
 import { CommentsContext } from "../views/CommentsForPostPage";
 import { Comment } from './Comment'
 import { useTimeout } from "../customHooks/useTimeout";
-//import styles from './CommentsList.module.css';
 import { useUpdateEffect } from "../customHooks/useUpdateEffect";
 import { useArray } from "../customHooks/useArray";
 

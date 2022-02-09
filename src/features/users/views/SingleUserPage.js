@@ -26,7 +26,7 @@ export const SingleUserPage = () => {
             (result, userId) => {
                 if (result.isSuccess) {
                     const filteredPostsAccumulator = filterPostsByUserId(result.data.entities, userId);
-                    return filteredPostsAccumulator.posts;
+                    return filteredPostsAccumulator;
                 } 
             }
         )

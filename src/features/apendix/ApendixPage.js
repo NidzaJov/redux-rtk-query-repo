@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useGetUsersQuery } from "../api/apiSlice";
-import { UserPosts } from "./UserPosts";
+import { UserPosts } from "./components/UserPosts";
 import { CircularProgress, Box, Snackbar } from "@mui/material";
 import classnames from "classnames/bind";
 import styles from "./ApendixPage.module.css";
@@ -17,12 +17,6 @@ export const ApendixPage = () => {
 
     useEffect(() => {
         const onScroll = () => {
-            console.log('Scroling');
-            console.log(stickyDiv.current);
-            console.log(stickyDiv.current.className)
-            console.log(window.scrollY);
-            console.log(stickyDiv.current.offsetTop)
-            console.log('parent:',stickyDiv.current.offsetParent)
              if (window.scrollY >= stickyDiv.current.offsetTop * 0.6) {
                 stickyDiv.current.className = cx({ 
                     [styles.sticky_posts_header_container]: true,
@@ -34,7 +28,6 @@ export const ApendixPage = () => {
                     [styles.posts_header_container]: true
                 })
             }
-            console.log(stickyDiv.className)
         }
         window.addEventListener('scroll', onScroll);
         return () => window.removeEventListener('scroll', onScroll);
@@ -78,8 +71,10 @@ export const ApendixPage = () => {
                     }
                 </div>)
     } else if (isError) {
-        return <div>
+        return (
+            <div>
                 <Snackbar messsage={error.toString()} />
             </div>
+        )
     }
 }

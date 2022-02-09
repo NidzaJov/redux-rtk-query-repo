@@ -1,5 +1,5 @@
 import { useGetUsersQuery, useAddNewUserMutation } from "../../api/apiSlice";
-import { useState, useRef  } from "react";
+import { useState, useRef, useEffect  } from "react";
 import styles from './AddNewUserForm.module.css';
 
 export const AddNewUserForm = ({ displayed, setDisplayed, setRightSided }) => {
@@ -49,9 +49,12 @@ export const AddNewUserForm = ({ displayed, setDisplayed, setRightSided }) => {
 
     const addUserElement = useRef();
 
-    if (addUserElement.current && displayed) {
-        addUserElement.current.className = styles.add_user_section_visible;
-    }
+    useEffect(() => {
+        if (addUserElement.current && displayed) {
+            addUserElement.current.className = styles.add_user_section_visible;
+        }
+    }, [addUserElement, displayed])
+    
 
     const closeAddUser = () => {
         addUserElement.current.className = styles.add_user_section;

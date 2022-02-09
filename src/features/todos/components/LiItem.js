@@ -42,7 +42,6 @@ export const LiItem = ({ todo }) => {
                 <input type="checkbox" defaultChecked={todo.completed}
                     style={checkBoxStyle}></input>
             </div>
-        </ div>
-        
+        </div>
     )
 }
